@@ -5,9 +5,9 @@ import nl.han.ica.oopg.objects.TextObject;
 import nl.han.ica.oopg.view.View;
 
 
-public class NukeIT extends GameEngine {
+public class NukeITWorld extends GameEngine {
     public static void main(String[] args) {
-        NukeIT app = new NukeIT();
+        NukeITWorld app = new NukeITWorld();
         app.runSketch();
     }
 
