@@ -6,6 +6,7 @@ import nl.han.ica.oopg.view.View;
 
 
 public class NukeITWorld extends GameEngine {
+
     public static void main(String[] args) {
         NukeITWorld app = new NukeITWorld();
         app.runSketch();
