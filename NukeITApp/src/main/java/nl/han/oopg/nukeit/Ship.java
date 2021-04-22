@@ -12,7 +12,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     final int width = 100;
     final int height = 125;
     private NukeITWorld world;
-    FireMode fireMode = FireMode.NORMAL;
+    FireMode fireMode = FireMode.TRIPLE;
 
 
     public Ship(NukeITWorld world) {
@@ -90,7 +90,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Asteroid) {
-                world.subtractLife();
+                //world.subtractLife();
             }
         }
     }

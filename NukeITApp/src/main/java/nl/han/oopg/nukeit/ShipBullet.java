@@ -46,7 +46,6 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Asteroid) {
-                world.updateScore(50);
                 world.deleteGameObject(this);
             }
         }

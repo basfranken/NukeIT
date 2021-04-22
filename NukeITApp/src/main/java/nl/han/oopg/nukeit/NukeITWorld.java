@@ -21,8 +21,8 @@ public class NukeITWorld extends GameEngine {
 
     @Override
     public void setupGame() {
-        int worldWith = 1200;
-        int worldHeight = 800;
+        int worldWith = 1280;
+        int worldHeight = 1024;
         createView(worldWith, worldHeight);
         createObjects();
         createDashboard(500, 200);
@@ -33,7 +33,6 @@ public class NukeITWorld extends GameEngine {
     private void createView(int worldWith, int worldHeight){
         View view = new View(worldWith, worldHeight);
         PImage backgroundImg = loadImage("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/background.jpg");
-        backgroundImg.resize(worldWith, worldHeight);
         view.setBackground(backgroundImg);
         setView(view);
         size(worldWith, worldHeight);
