@@ -2,11 +2,13 @@ package nl.han.oopg.nukeit;
 
 import nl.han.ica.oopg.alarm.Alarm;
 import nl.han.ica.oopg.alarm.IAlarmListener;
+import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.sound.Sound;
+import processing.core.PGraphics;
 
 import java.util.Random;
 
-public class AsteroidSpawner implements IAlarmListener {
+public class AsteroidSpawner extends GameObject implements IAlarmListener {
 
     private float asteroidsPerSecond;
     private Random random;
@@ -30,15 +32,31 @@ public class AsteroidSpawner implements IAlarmListener {
     @Override
     public void triggerAlarm(String alarmName) {
 
-        int asteroidX = random.nextInt(world.width);
-        int asteroidY = 0;
-        int maxSpeed = 4;
-        int minSpeed = 2;
-        int speed     = random.nextInt(maxSpeed-minSpeed) + minSpeed;
+        int asteroidSize         = 100;
 
-        Asteroid asteroid = new Asteroid(world, asteroidX, asteroidY, speed, 100);
+        int asteroidMinX         = asteroidSize;
+        int asteroidMaxX         = world.width - asteroidSize;
+        int asteroidX            = random.nextInt(asteroidMaxX - asteroidMinX) + asteroidMinX;
+
+        int asteroidY         = 0;
+
+        int asteroidMaxSpeed  = 7;
+        int asteroidMinSpeed  = 2;
+        int asteroidspeed     = random.nextInt(asteroidMaxSpeed-asteroidMinSpeed) + asteroidMinSpeed;
+
+        Asteroid asteroid = new Asteroid(world, asteroidX, asteroidY, asteroidspeed, asteroidSize);
         world.addGameObject(asteroid);
 
         startAlarm();
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public void draw(PGraphics pGraphics) {
+
     }
 }

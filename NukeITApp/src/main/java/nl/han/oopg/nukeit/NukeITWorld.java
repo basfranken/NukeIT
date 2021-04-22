@@ -6,10 +6,15 @@ import nl.han.ica.oopg.objects.TextObject;
 import processing.core.PImage;
 import nl.han.ica.oopg.view.View;
 
+import java.util.Random;
+
 public class NukeITWorld extends GameEngine {
 
+    public Ship ship;
     private AsteroidSpawner asteroidSpawner;
-    private TextObject scoreBoardText;
+    private PowerUpSpawner  powerUpSpawner;
+    private TextObject      livesText;
+    private TextObject      scoreText;
     private int             score;
     private int             lives = 3;
 
@@ -23,9 +28,13 @@ public class NukeITWorld extends GameEngine {
     public void setupGame() {
         int worldWith = 1280;
         int worldHeight = 1024;
+
         createView(worldWith, worldHeight);
+
         createObjects();
-        createDashboard(500, 200);
+
+        createDashboards(500, 200);
+
         createAsteroidSpawner();
 
     }
@@ -36,34 +45,52 @@ public class NukeITWorld extends GameEngine {
         view.setBackground(backgroundImg);
         setView(view);
         size(worldWith, worldHeight);
+        createPowerUpSpawner();
     }
 
     private void createObjects() {
-        Ship ship = new Ship(this);
+        ship = new Ship(this);
         addGameObject(ship, 500, 650);
     }
 
-    private void createDashboard(int dashboardWidth, int dashboardHeight) {
-        Dashboard dashboard = new Dashboard(0, 0, dashboardWidth, dashboardHeight);
-        scoreBoardText = new TextObject("SCORE : " + score + "\nLIVES: " + lives, 45);
-        scoreBoardText.setForeColor(255, 0, 0, 255);
-        dashboard.addGameObject(scoreBoardText);
-        addDashboard(dashboard);
+    private void createDashboards(int dashboardWidth, int dashboardHeight) {
+        Dashboard scoreDashboard = new Dashboard(0, 0, dashboardWidth, dashboardHeight);
+        Dashboard livesDashboard = new Dashboard(0, 50, dashboardWidth, dashboardHeight);
+
+        scoreText = new TextObject("SCORE : " + score , 45);
+        livesText = new TextObject("LIVES : " + lives, 45);
+
+        scoreText.setForeColor(255, 0, 0, 255);
+        livesText.setForeColor(255, 0, 0, 255);
+
+        scoreDashboard.addGameObject(scoreText);
+        livesDashboard.addGameObject(livesText);
+
+        addDashboard(scoreDashboard);
+        addDashboard(livesDashboard);
     }
 
     public void createAsteroidSpawner() {
-        asteroidSpawner = new AsteroidSpawner(this, 1);
+        asteroidSpawner = new AsteroidSpawner(this, 2);
+        addGameObject(asteroidSpawner);
+    }
+
+    public void createPowerUpSpawner() {
+        powerUpSpawner = new PowerUpSpawner(this, 10);
+        addGameObject(powerUpSpawner);
     }
 
     public void subtractLife() {
         lives --;
-        scoreBoardText.setText("SCORE : " + score + "\n LIVES: " + lives);
+        livesText.setText("LIVES: " + lives);
     }
 
     public void updateScore(int scoreToAdd) {
         score = score + scoreToAdd;
-        scoreBoardText.setText("SCORE : " + score + "\n LIVES: " + lives);
+        scoreText.setText("SCORE : " + score);
     }
+
+
 
     @Override
     public void update() {

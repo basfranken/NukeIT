@@ -12,7 +12,8 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     final int width = 100;
     final int height = 125;
     private NukeITWorld world;
-    FireMode fireMode = FireMode.TRIPLE;
+    FireMode fireMode = FireMode.NORMAL;
+
 
 
     public Ship(NukeITWorld world) {
@@ -20,7 +21,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
         this.world = world;
         this.setWidth(width);
         this.setHeight(height);
-        setFriction(0.030f);
+        setFriction(0.018f);
     }
 
     private void shoot() {
@@ -42,6 +43,9 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
 
     }
 
+    public void changeWeapon (FireMode firemode) {
+        this.fireMode = firemode;
+    }
 
     @Override
     public void update() {
