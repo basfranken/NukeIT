@@ -8755,7 +8755,7 @@
 											"top": 1127,
 											"width": 171.59619140625,
 											"height": 13,
-											"text": "ScoreBoard"
+											"text": "nl.han.oopg.nukeit.ScoreBoard"
 										},
 										{
 											"_type": "LabelView",
@@ -8861,7 +8861,7 @@
 											"top": 1173,
 											"width": 171.59619140625,
 											"height": 13,
-											"text": "+ScoreBoard(score: String)",
+											"text": "+nl.han.oopg.nukeit.ScoreBoard(score: String)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -19080,7 +19080,7 @@
 					"_parent": {
 						"$ref": "AAAAAAF42bV3p3GQYN4="
 					},
-					"name": "ScoreBoard",
+					"name": "nl.han.oopg.nukeit.ScoreBoard",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -19155,7 +19155,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF42p4ds5a2T9U="
 							},
-							"name": "ScoreBoard",
+							"name": "nl.han.oopg.nukeit.ScoreBoard",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
