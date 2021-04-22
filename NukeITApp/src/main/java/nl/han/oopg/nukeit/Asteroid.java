@@ -36,6 +36,9 @@ public class Asteroid extends SpriteObject implements ICollidableWithGameObjects
             if (obj instanceof ShipBullet) {
                 world.deleteGameObject(this);
             }
+            if (obj instanceof Ship) {
+                world.deleteGameObject(this);
+            }
         }
     }
 }

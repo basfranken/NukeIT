@@ -9,6 +9,10 @@ import nl.han.ica.oopg.view.View;
 public class NukeITWorld extends GameEngine {
 
     private AsteroidSpawner asteroidSpawner;
+    private TextObject scoreBoardText;
+    private int             score;
+    private int             lives = 3;
+
 
     public static void main(String[] args) {
         NukeITWorld app = new NukeITWorld();
@@ -21,7 +25,7 @@ public class NukeITWorld extends GameEngine {
         int worldHeight = 800;
         createView(worldWith, worldHeight);
         createObjects();
-        createDashboard(200, 200);
+        createDashboard(500, 200);
         createAsteroidSpawner();
 
     }
@@ -42,9 +46,9 @@ public class NukeITWorld extends GameEngine {
 
     private void createDashboard(int dashboardWidth, int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0, 0, dashboardWidth, dashboardHeight);
-        TextObject dashboardText = new TextObject("SCORE : ", 45);
-        dashboardText.setForeColor(255, 0, 0, 255);
-        dashboard.addGameObject(dashboardText);
+        scoreBoardText = new TextObject("SCORE : " + score + "\n LIVES: " + lives, 45);
+        scoreBoardText.setForeColor(255, 0, 0, 255);
+        dashboard.addGameObject(scoreBoardText);
         addDashboard(dashboard);
     }
 
@@ -52,9 +56,20 @@ public class NukeITWorld extends GameEngine {
         asteroidSpawner = new AsteroidSpawner(this, 1);
     }
 
+    public void subtractLife() {
+        lives --;
+        scoreBoardText.setText("SCORE : " + score + "\n LIVES: " + lives);
+    }
+
+    public void updateScore(int scoreToAdd) {
+        score = score + scoreToAdd;
+        scoreBoardText.setText("SCORE : " + score + "\n LIVES: " + lives);
+    }
+
     @Override
     public void update() {
     }
+
 
 }
 

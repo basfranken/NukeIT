@@ -1,9 +1,13 @@
 package nl.han.oopg.nukeit;
 
+import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
+import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 
-public class Ship extends SpriteObject {
+import java.util.List;
+
+public class Ship extends SpriteObject implements ICollidableWithGameObjects {
 
     final int width = 100;
     final int height = 125;
@@ -27,8 +31,8 @@ public class Ship extends SpriteObject {
             case RAPID:
                 for (int i = 0; i < 5; ++i) {
                     world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10 * (i + 1) / 2));
-                    break;
                 }
+                break;
             case TRIPLE:
                 world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10, 45));
                 world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10, 0));
@@ -82,4 +86,12 @@ public class Ship extends SpriteObject {
         }
     }
 
+    @Override
+    public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
+        for (GameObject obj : collidedWith) {
+            if (obj instanceof Asteroid) {
+                world.subtractLife();
+            }
+        }
+    }
 }
