@@ -6,13 +6,9 @@ import nl.han.ica.oopg.objects.TextObject;
 import processing.core.PImage;
 import nl.han.ica.oopg.view.View;
 
-import java.util.Random;
-
 public class NukeITWorld extends GameEngine {
 
     public Ship ship;
-    private AsteroidSpawner asteroidSpawner;
-    private PowerUpSpawner  powerUpSpawner;
     private TextObject      livesText;
     private TextObject      scoreText;
     private int             score;
@@ -27,16 +23,15 @@ public class NukeITWorld extends GameEngine {
     @Override
     public void setupGame() {
         int worldWith = 1280;
-        int worldHeight = 1024;
+        int worldHeight = 900;
 
         createView(worldWith, worldHeight);
 
         createObjects();
 
-        createDashboards(500, 200);
+        createDashboards();
 
         createAsteroidSpawner();
-
     }
 
     private void createView(int worldWith, int worldHeight){
@@ -50,10 +45,14 @@ public class NukeITWorld extends GameEngine {
 
     private void createObjects() {
         ship = new Ship(this);
-        addGameObject(ship, 500, 650);
+        addGameObject(ship, 500, 899);
     }
 
-    private void createDashboards(int dashboardWidth, int dashboardHeight) {
+    private void createDashboards() {
+
+        int dashboardWidth  = 500;
+        int dashboardHeight = 200;
+
         Dashboard scoreDashboard = new Dashboard(0, 0, dashboardWidth, dashboardHeight);
         Dashboard livesDashboard = new Dashboard(0, 50, dashboardWidth, dashboardHeight);
 
@@ -71,12 +70,12 @@ public class NukeITWorld extends GameEngine {
     }
 
     public void createAsteroidSpawner() {
-        asteroidSpawner = new AsteroidSpawner(this, 2);
+        AsteroidSpawner asteroidSpawner = new AsteroidSpawner(this, 2);
         addGameObject(asteroidSpawner);
     }
 
     public void createPowerUpSpawner() {
-        powerUpSpawner = new PowerUpSpawner(this, 10);
+        PowerUpSpawner powerUpSpawner = new PowerUpSpawner(this, 10);
         addGameObject(powerUpSpawner);
     }
 

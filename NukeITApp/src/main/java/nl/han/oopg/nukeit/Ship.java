@@ -21,7 +21,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
         this.world = world;
         this.setWidth(width);
         this.setHeight(height);
-        setFriction(0.018f);
+        setFriction(0.025f);
     }
 
     private void shoot() {
@@ -94,7 +94,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Asteroid) {
-                //world.subtractLife();
+                world.subtractLife();
             }
         }
     }
