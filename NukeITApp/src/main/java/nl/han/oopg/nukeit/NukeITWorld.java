@@ -45,7 +45,7 @@ public class NukeITWorld extends GameEngine {
 
     private void createDashboard(int dashboardWidth, int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0, 0, dashboardWidth, dashboardHeight);
-        scoreBoardText = new TextObject("SCORE : " + score + "\n LIVES: " + lives, 45);
+        scoreBoardText = new TextObject("SCORE : " + score + "\nLIVES: " + lives, 45);
         scoreBoardText.setForeColor(255, 0, 0, 255);
         dashboard.addGameObject(scoreBoardText);
         addDashboard(dashboard);
