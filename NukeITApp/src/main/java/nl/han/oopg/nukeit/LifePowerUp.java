@@ -11,7 +11,7 @@ public class LifePowerUp extends SpriteObject implements ICollidableWithGameObje
     private NukeITWorld world;
 
     public LifePowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/rapid fire.png"));
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/add life.png"));
         this.world = world;
         setWidth(size);
         setHeight(size);
