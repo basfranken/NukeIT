@@ -44,6 +44,7 @@ public class PowerUpSpawner extends GameObject implements IAlarmListener {
         FireMode randomPowerUp = randomFireMode();
 
 
+
         if (randomPowerUp == FireMode.RAPID) {
             world.addGameObject(new RapidFirePowerUp(world, powerUpSize), powerUpX, powerUpY);
         }
@@ -54,12 +55,26 @@ public class PowerUpSpawner extends GameObject implements IAlarmListener {
             world.addGameObject(new NormalFirePowerUp(world, powerUpSize), powerUpX, powerUpY);
         }
 
-        startAlarm();
+        LifeAndDeath randomPowerUp2 = randomLifeOrDeath();
+
+        if (randomPowerUp2 == LifeAndDeath.NUKEIT) {
+            world.addGameObject(new NukeITPowerUp(world, powerUpSize), powerUpX, powerUpY);
+        }
+        if (randomPowerUp2 == LifeAndDeath.ADDLIFE) {
+            world.addGameObject(new LifePowerUp(world, powerUpSize), powerUpX, powerUpY);
+        }
+
+            startAlarm();
     }
 
     private FireMode randomFireMode() {
         int pick = new Random().nextInt(FireMode.values().length);
         return FireMode.values()[pick];
+    }
+
+    private LifeAndDeath randomLifeOrDeath() {
+        int pick = new Random().nextInt(LifeAndDeath.values().length);
+        return LifeAndDeath.values()[pick];
     }
 
     @Override
