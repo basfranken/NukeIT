@@ -84,6 +84,12 @@ public class NukeITWorld extends GameEngine {
         livesText.setText("LIVES: " + lives);
     }
 
+    public void addLife() {
+        lives ++;
+        livesText.setText("LIVES: " + lives);
+    }
+
+
     public void updateScore(int scoreToAdd) {
         score = score + scoreToAdd;
         scoreText.setText("SCORE : " + score);

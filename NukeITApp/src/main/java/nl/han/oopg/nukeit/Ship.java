@@ -84,9 +84,10 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
         if (keyCode == world.DOWN) {
             setDirectionSpeed(180, speed);
         }
-        if (key == ' ') {
+        if (keyCode == 49) {
             shoot();
             //TODO spatiebalk schietactie
+            //49 for space
         }
     }
 
