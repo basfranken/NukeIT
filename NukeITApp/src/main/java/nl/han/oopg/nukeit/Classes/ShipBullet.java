@@ -8,7 +8,7 @@ import nl.han.ica.oopg.objects.SpriteObject;
 import java.util.List;
 
 
-public class ShipBullet extends SpriteObject implements ICollidableWithGameObjects  {
+public class ShipBullet extends SpriteObject implements ICollidableWithGameObjects {
 
     private final NukeITWorld world;
     final int width     = 40;
@@ -23,6 +23,7 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
         setY(startY);
         setySpeed(speed);
     }
+
     public ShipBullet(NukeITWorld world, int startX, int startY, int speed, int angle) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"));
         this.world = world;
@@ -37,7 +38,7 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
 
     @Override
     public void update() {
-        if (getY() <= 0) {
+        if (getY() <= 0 || getY() >= world.getHeight() || getX() <= 0 || getX() >= world.getWidth()) {
             world.deleteGameObject(this);
         }
     }

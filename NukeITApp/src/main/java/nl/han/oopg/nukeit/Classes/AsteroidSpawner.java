@@ -12,6 +12,7 @@ public class AsteroidSpawner extends GameObject implements Spawner {
     private NukeITWorld world;
     private Random random;
     private float spawnsPerSecond;
+    private Alarm alarm;
 
     public AsteroidSpawner(NukeITWorld world, float spawnsPerSecond) {
         this.spawnsPerSecond = spawnsPerSecond;
@@ -21,7 +22,7 @@ public class AsteroidSpawner extends GameObject implements Spawner {
     }
 
     public void startAlarm() {
-        Alarm alarm = new Alarm("New asteroid", 1 / spawnsPerSecond);
+        alarm = new Alarm("New asteroid", 1 / spawnsPerSecond);
         alarm.addTarget(this);
         alarm.start();
     }
@@ -46,6 +47,11 @@ public class AsteroidSpawner extends GameObject implements Spawner {
         world.addGameObject(asteroid);
 
         startAlarm();
+    }
+
+    @Override
+    public void stopSpawning() {
+        alarm.stop();
     }
 
 

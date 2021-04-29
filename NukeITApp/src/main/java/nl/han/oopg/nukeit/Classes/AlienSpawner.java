@@ -12,6 +12,7 @@ public class AlienSpawner extends GameObject implements Spawner {
     private NukeITWorld world;
     private float spawnsPerSecond;
     private Random random;
+    private Alarm alarm;
 
     public AlienSpawner(NukeITWorld world, float spawnsPerSecond) {
         this.spawnsPerSecond = spawnsPerSecond;
@@ -32,7 +33,7 @@ public class AlienSpawner extends GameObject implements Spawner {
 
     @Override
     public void startAlarm() {
-        Alarm alarm = new Alarm("New alien", 1 / spawnsPerSecond);
+        alarm = new Alarm("New alien", 1 / spawnsPerSecond);
         alarm.addTarget(this);
         alarm.start();
     }
@@ -49,14 +50,19 @@ public class AlienSpawner extends GameObject implements Spawner {
         int alienMaxSpeed     = 4;
         int alienSpeed        = world.getRandomInRange(alienMinSpeed, alienMaxSpeed);
 
-        int alienMinLives  = 2;
-        int alienMaxLives  = 10;
+        int alienMinLives  = 8;
+        int alienMaxLives  = 20;
 
         int alienLives     = world.getRandomInRange(alienMinLives, alienMaxLives);
 
-        Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives);
+        Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives, 2f);
         world.addGameObject(alien);
 
         startAlarm();
+    }
+
+    @Override
+    public void stopSpawning() {
+        alarm.stop();
     }
 }
