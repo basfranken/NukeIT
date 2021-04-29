@@ -1,4 +1,4 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Enums;
 
 public enum FireMode {
     NORMAL,

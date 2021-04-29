@@ -1,23 +1,21 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
 
 
 import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
+import nl.han.oopg.nukeit.Enums.FireMode;
 
 import java.util.List;
 
-public class TripleShotPowerUp extends SpriteObject implements ICollidableWithGameObjects {
+public class RapidFirePowerUp extends SpriteObject implements ICollidableWithGameObjects {
 
     private NukeITWorld world;
 
-
-
-    public TripleShotPowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/triple shot.png"));
+    public RapidFirePowerUp(NukeITWorld world, int size) {
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/rapid fire.png"));
         this.world = world;
-
         setWidth(size);
         setHeight(size);
     }
@@ -31,7 +29,7 @@ public class TripleShotPowerUp extends SpriteObject implements ICollidableWithGa
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Ship) {
-                world.ship.changeWeapon(FireMode.TRIPLE);
+                world.ship.changeWeapon(FireMode.RAPID);
                 world.deleteGameObject(this);
             }
         }

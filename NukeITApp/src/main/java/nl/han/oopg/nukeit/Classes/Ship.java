@@ -1,9 +1,10 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
+import nl.han.oopg.nukeit.Enums.FireMode;
 
 import java.util.List;
 
