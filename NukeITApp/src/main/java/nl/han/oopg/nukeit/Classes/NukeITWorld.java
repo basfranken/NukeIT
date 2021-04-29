@@ -1,10 +1,12 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.objects.TextObject;
 import processing.core.PImage;
 import nl.han.ica.oopg.view.View;
+
+import java.util.Random;
 
 public class NukeITWorld extends GameEngine {
 
@@ -31,7 +33,11 @@ public class NukeITWorld extends GameEngine {
 
         createDashboards();
 
-        createAsteroidSpawner();
+        createAsteroidSpawner(3f);
+
+        createPowerUpSpawner(0.4f);
+
+        createAlienSpawner(0.6f);
     }
 
     private void createView(int worldWith, int worldHeight){
@@ -40,7 +46,6 @@ public class NukeITWorld extends GameEngine {
         view.setBackground(backgroundImg);
         setView(view);
         size(worldWith, worldHeight);
-        createPowerUpSpawner();
     }
 
     private void createObjects() {
@@ -69,14 +74,19 @@ public class NukeITWorld extends GameEngine {
         addDashboard(livesDashboard);
     }
 
-    public void createAsteroidSpawner() {
-        AsteroidSpawner asteroidSpawner = new AsteroidSpawner(this, 2);
+    public void createAsteroidSpawner(float spawnsPerSecond) {
+        AsteroidSpawner asteroidSpawner = new AsteroidSpawner(this, spawnsPerSecond);
         addGameObject(asteroidSpawner);
     }
 
-    public void createPowerUpSpawner() {
-        PowerUpSpawner powerUpSpawner = new PowerUpSpawner(this, 10);
+    public void createPowerUpSpawner(float spawnsPerSecond) {
+        PowerUpSpawner powerUpSpawner = new PowerUpSpawner(this, spawnsPerSecond);
         addGameObject(powerUpSpawner);
+    }
+
+    public void createAlienSpawner(float spawnsPerSecond) {
+        AlienSpawner alienSpawner = new AlienSpawner(this, spawnsPerSecond);
+        addGameObject(alienSpawner);
     }
 
     public void subtractLife() {
@@ -95,6 +105,10 @@ public class NukeITWorld extends GameEngine {
         scoreText.setText("SCORE : " + score);
     }
 
+    public int getRandomInRange(int min, int max){
+        Random random = new Random();
+        return random.nextInt(max - min) + min;
+    }
 
 
     @Override

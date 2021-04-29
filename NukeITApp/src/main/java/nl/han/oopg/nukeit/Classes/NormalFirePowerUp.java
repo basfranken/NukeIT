@@ -1,36 +1,35 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
+
+
 import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
+import nl.han.oopg.nukeit.Enums.FireMode;
+
 import java.util.List;
 
-public class NukeITPowerUp extends SpriteObject implements ICollidableWithGameObjects {
+public class NormalFirePowerUp extends SpriteObject implements ICollidableWithGameObjects {
 
     private NukeITWorld world;
 
-
-
-    public NukeITPowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/NUKEIT.png"));
+    public NormalFirePowerUp(NukeITWorld world, int size) {
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/normal fire.png"));
         this.world = world;
-
         setWidth(size);
         setHeight(size);
     }
 
     @Override
     public void update() {
-
     }
 
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Ship) {
-                world.deleteAllGameOBjects();
+                world.ship.changeWeapon(FireMode.NORMAL);
                 world.deleteGameObject(this);
-                //todo image of nuke overlay screen
             }
         }
     }

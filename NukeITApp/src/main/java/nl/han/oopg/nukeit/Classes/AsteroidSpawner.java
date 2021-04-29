@@ -1,29 +1,27 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.alarm.IAlarmListener;
 import nl.han.ica.oopg.objects.GameObject;
-import nl.han.ica.oopg.sound.Sound;
+import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
 
 import java.util.Random;
 
-public class AsteroidSpawner extends GameObject implements IAlarmListener {
+public class AsteroidSpawner extends GameObject implements Spawner {
 
-    private float asteroidsPerSecond;
-    private Random random;
     private NukeITWorld world;
+    private Random random;
+    private float spawnsPerSecond;
 
-
-    public AsteroidSpawner(NukeITWorld world, float asteroidsPerSecond) {
-        this.asteroidsPerSecond = asteroidsPerSecond;
+    public AsteroidSpawner(NukeITWorld world, float spawnsPerSecond) {
+        this.spawnsPerSecond = spawnsPerSecond;
         this.world = world;
         random = new Random();
         startAlarm();
     }
 
-    private void startAlarm() {
-        Alarm alarm = new Alarm("New asteroid", 1 / asteroidsPerSecond);
+    public void startAlarm() {
+        Alarm alarm = new Alarm("New asteroid", 1 / spawnsPerSecond);
         alarm.addTarget(this);
         alarm.start();
     }
@@ -49,6 +47,7 @@ public class AsteroidSpawner extends GameObject implements IAlarmListener {
 
         startAlarm();
     }
+
 
     @Override
     public void update() {

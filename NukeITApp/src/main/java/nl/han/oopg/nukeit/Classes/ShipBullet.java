@@ -1,4 +1,4 @@
-package nl.han.oopg.nukeit;
+package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
@@ -45,7 +45,10 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
-            if (obj instanceof Asteroid) {
+            if (obj instanceof Asteroid) {  //TODO if object implements enemy interface
+                world.deleteGameObject(this);
+            }
+            if (obj instanceof Alien) {     //TODO if object implements enemy interface
                 world.deleteGameObject(this);
             }
         }
