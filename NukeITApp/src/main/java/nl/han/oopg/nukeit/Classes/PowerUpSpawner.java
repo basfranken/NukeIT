@@ -13,6 +13,7 @@ public class PowerUpSpawner extends GameObject implements Spawner {
     private NukeITWorld world;
     private Random random;
     private float spawnsPerSecond;
+    private Alarm alarm;
 
     public PowerUpSpawner(NukeITWorld world, float spawnsPerSecond) {
         this.spawnsPerSecond = spawnsPerSecond;
@@ -51,9 +52,14 @@ public class PowerUpSpawner extends GameObject implements Spawner {
         startAlarm();
     }
 
+    @Override
+    public void stopSpawning() {
+        alarm.stop();
+    }
+
 
     public void startAlarm() {
-        Alarm alarm = new Alarm("New PowerUp", 1 / spawnsPerSecond);
+        alarm = new Alarm("New PowerUp", 1 / spawnsPerSecond);
         alarm.addTarget(this);
         alarm.start();
     }

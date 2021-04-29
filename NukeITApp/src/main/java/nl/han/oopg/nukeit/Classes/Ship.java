@@ -31,7 +31,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
                 world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10));
                 break;
             case RAPID:
-                for (int i = 0; i < 5; ++i) {
+                for (int i = 0; i < 3; ++i) {
                     world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10 * (i + 1) / 2));
                 }
                 break;
@@ -94,6 +94,9 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Asteroid) {
+                world.subtractLife();
+            }
+            if (obj instanceof AlienBullet) {
                 world.subtractLife();
             }
         }

@@ -2,20 +2,25 @@ package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
+import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.TextObject;
+import nl.han.oopg.nukeit.Enums.GameState;
+import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PImage;
 import nl.han.ica.oopg.view.View;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class NukeITWorld extends GameEngine {
 
-    public Ship ship;
-    private TextObject      livesText;
-    private TextObject      scoreText;
-    private int             score;
-    private int             lives = 3;
-
+    public  Ship                ship;
+    private TextObject          livesText;
+    private TextObject          scoreText;
+    private int                 score;
+    private int                 lives = 3;
+    private GameState           gameState = GameState.GAME;
+    private ArrayList<Spawner>  spawners;
 
     public static void main(String[] args) {
         NukeITWorld app = new NukeITWorld();
@@ -33,11 +38,8 @@ public class NukeITWorld extends GameEngine {
 
         createDashboards();
 
-        createAsteroidSpawner(3f);
+        createSpawners(3f, 0.4f, 0.1f);
 
-        createPowerUpSpawner(0.4f);
-
-        createAlienSpawner(0.6f);
     }
 
     private void createView(int worldWith, int worldHeight){
@@ -74,19 +76,17 @@ public class NukeITWorld extends GameEngine {
         addDashboard(livesDashboard);
     }
 
-    public void createAsteroidSpawner(float spawnsPerSecond) {
-        AsteroidSpawner asteroidSpawner = new AsteroidSpawner(this, spawnsPerSecond);
-        addGameObject(asteroidSpawner);
-    }
 
-    public void createPowerUpSpawner(float spawnsPerSecond) {
-        PowerUpSpawner powerUpSpawner = new PowerUpSpawner(this, spawnsPerSecond);
-        addGameObject(powerUpSpawner);
-    }
+    public void createSpawners(float asteroidsPerSecond, float aliensPerSecond, float powerUpsPerSecond) {
+        spawners = new ArrayList<>();
 
-    public void createAlienSpawner(float spawnsPerSecond) {
-        AlienSpawner alienSpawner = new AlienSpawner(this, spawnsPerSecond);
-        addGameObject(alienSpawner);
+        spawners.add(new AsteroidSpawner(this, asteroidsPerSecond));
+        spawners.add(new AlienSpawner(this, aliensPerSecond));
+        spawners.add(new PowerUpSpawner(this, powerUpsPerSecond));
+
+        for (Spawner i : spawners) {
+            addGameObject((GameObject) i);
+        }
     }
 
     public void subtractLife() {
@@ -110,9 +110,22 @@ public class NukeITWorld extends GameEngine {
         return random.nextInt(max - min) + min;
     }
 
+    private void stopGame() {
+        deleteAllGameOBjects();
+        deleteAllDashboards();
+
+        for(Spawner i : spawners) {
+            i.stopSpawning();
+        }
+
+        gameState = GameState.END;
+    }
 
     @Override
     public void update() {
+        if (lives <= 0) {
+            stopGame();
+        }
     }
 
 
