@@ -1,13 +1,15 @@
+
 package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.alarm.Alarm;
+import nl.han.ica.oopg.alarm.IAlarmListener;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
 
 import java.util.Random;
 
-public class AsteroidSpawner extends GameObject implements Spawner {
+public class AsteroidSpawner extends GameObject implements Spawner, IAlarmListener {
 
     private NukeITWorld world;
     private Random random;

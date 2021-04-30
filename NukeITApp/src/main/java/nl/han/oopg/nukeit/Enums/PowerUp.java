@@ -4,5 +4,6 @@ public enum PowerUp {
     RAPID,
     NORMAL,
     TRIPLE,
-    LIFE
+    LIFE,
+    NUKEIT,
 }

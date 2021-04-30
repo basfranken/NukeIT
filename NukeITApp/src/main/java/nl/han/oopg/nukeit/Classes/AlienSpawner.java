@@ -1,13 +1,15 @@
+
 package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.alarm.Alarm;
+import nl.han.ica.oopg.alarm.IAlarmListener;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
 
 import java.util.Random;
 
-public class AlienSpawner extends GameObject implements Spawner {
+public class AlienSpawner extends GameObject implements Spawner, IAlarmListener  {
 
     private NukeITWorld world;
     private float spawnsPerSecond;
@@ -34,7 +36,7 @@ public class AlienSpawner extends GameObject implements Spawner {
     @Override
     public void startAlarm() {
         alarm = new Alarm("New alien", 1 / spawnsPerSecond);
-        alarm.addTarget(this);
+        alarm.addTarget((IAlarmListener) this);
         alarm.start();
     }
 

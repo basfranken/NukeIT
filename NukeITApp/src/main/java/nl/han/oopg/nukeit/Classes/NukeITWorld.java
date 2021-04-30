@@ -74,6 +74,7 @@ public class NukeITWorld extends GameEngine {
 
         addDashboard(scoreDashboard);
         addDashboard(livesDashboard);
+
     }
 
 
@@ -115,7 +116,7 @@ public class NukeITWorld extends GameEngine {
         deleteAllDashboards();
 
         for(Spawner i : spawners) {
-            i.stopSpawning();
+           i.stopSpawning();
         }
 
         gameState = GameState.END;
