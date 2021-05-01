@@ -21,7 +21,8 @@ public class PowerUpSpawner extends Spawner {
         getTimer().schedule(task, 0, milliSecondsPerSpawn);
     }
 
-    private void setTask() {
+    @Override
+    public void setTask() {
         task = new TimerTask() {
 
             @Override

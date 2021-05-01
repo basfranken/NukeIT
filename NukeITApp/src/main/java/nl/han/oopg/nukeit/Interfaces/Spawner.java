@@ -23,6 +23,8 @@ public abstract class Spawner extends GameObject {
 
     }
 
+    public abstract void setTask();
+
     public Timer getTimer() {
         return timer;
     }

@@ -17,7 +17,8 @@ public class AsteroidSpawner extends Spawner {
         getTimer().schedule(task, 0, milliSecondsPerSpawn);
     }
 
-    private void setTask() {
+    @Override
+    public void setTask() {
         task = new TimerTask() {
 
             @Override
@@ -32,9 +33,9 @@ public class AsteroidSpawner extends Spawner {
 
                 int asteroidMaxSpeed  = 7;
                 int asteroidMinSpeed  = 2;
-                int asteroidspeed     = world.getRandomInRange(asteroidMinSpeed, asteroidMaxSpeed);
+                int asteroidSpeed     = world.getRandomInRange(asteroidMinSpeed, asteroidMaxSpeed);
 
-                world.addGameObject(new Asteroid(world, asteroidX, asteroidY, asteroidspeed, asteroidSize));
+                world.addGameObject(new Asteroid(world, asteroidX, asteroidY, asteroidSpeed, asteroidSize));
             }
         };
     }
