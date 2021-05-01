@@ -1,25 +1,23 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.alarm.IAlarmListener;
-import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.SpriteObject;
+import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class Alien extends SpriteObject implements ICollidableWithGameObjects, IAlarmListener {
+public class Alien extends Enemy {
 
-    private NukeITWorld world;
+    private final NukeITWorld world;
     private int lives;
-    private float fireRate;
-    private Alarm alarm;
+    private final float fireRate;
+    private Timer timer;
+    private TimerTask task;
 
-    public Alien(NukeITWorld world, int startX, int startY, int width, int height, int speed, int lives, float fireRate) {
-
+    public Alien(NukeITWorld world, int startX, int startY, int width, int height, int speed, int lives, long fireRate) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/Alien.png"));
-
         this.world = world;
         this.setHeight(height);
         this.setWidth(width);
@@ -33,17 +31,19 @@ public class Alien extends SpriteObject implements ICollidableWithGameObjects, I
     }
 
     private void startShooting() {
-        startAlarm();
+        setTask();
+        timer = new Timer();
+        timer.schedule(task, 0, (long) fireRate);
     }
 
-    private void shoot() {
-        world.addGameObject(new AlienBullet(world, (int) (getX() + getWidth() / 2), (int) getY(), 8));
-    }
+    public void setTask() {
+        task = new TimerTask() {
 
-    public void startAlarm() {
-        alarm = new Alarm("New AlienBullet", 1 / fireRate);
-        alarm.addTarget(this);
-        alarm.start();
+            @Override
+            public void run() {
+                world.addGameObject(new AlienBullet(world, (int) (getX() + getWidth() / 2), (int) getY(), 8));
+            }
+        };
     }
 
     @Override
@@ -57,10 +57,11 @@ public class Alien extends SpriteObject implements ICollidableWithGameObjects, I
         }
 
         if (lives <= 0) {
-            alarm.stop();
+            timer.cancel();
             world.deleteGameObject(this);
         }
     }
+
 
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
@@ -73,9 +74,4 @@ public class Alien extends SpriteObject implements ICollidableWithGameObjects, I
         }
     }
 
-    @Override
-    public void triggerAlarm(String s) {
-        shoot();
-        startAlarm();
-    }
 }

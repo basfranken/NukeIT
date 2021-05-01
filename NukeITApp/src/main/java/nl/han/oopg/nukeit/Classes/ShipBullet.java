@@ -1,21 +1,20 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.SpriteObject;
+import nl.han.oopg.nukeit.AbstractClasses.Bullet;
 
 import java.util.List;
 
 
-public class ShipBullet extends SpriteObject implements ICollidableWithGameObjects {
+public class ShipBullet extends Bullet {
 
     private final NukeITWorld world;
     final int width     = 40;
     final int height    = 70;
 
     public ShipBullet(NukeITWorld world, int startX, int startY, int speed) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"));
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"), world);
         this.world = world;
         this.setWidth(width);
         this.setHeight(height);
@@ -25,7 +24,7 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
     }
 
     public ShipBullet(NukeITWorld world, int startX, int startY, int speed, int angle) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"));
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"), world);
         this.world = world;
         this.setWidth(width);
         this.setHeight(height);
@@ -33,14 +32,6 @@ public class ShipBullet extends SpriteObject implements ICollidableWithGameObjec
         setY(startY);
         setySpeed(speed);
         setDirection(angle);
-    }
-
-
-    @Override
-    public void update() {
-        if (getY() <= 0 || getY() >= world.getHeight() || getX() <= 0 || getX() >= world.getWidth()) {
-            world.deleteGameObject(this);
-        }
     }
 
     @Override

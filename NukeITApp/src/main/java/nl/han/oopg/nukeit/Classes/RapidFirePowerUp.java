@@ -2,7 +2,7 @@ package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.oopg.nukeit.Enums.FireMode;
-import nl.han.oopg.nukeit.Interfaces.PowerUp;
+import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 
 
 public class RapidFirePowerUp extends PowerUp {

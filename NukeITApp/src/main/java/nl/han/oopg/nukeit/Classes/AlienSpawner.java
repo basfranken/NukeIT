@@ -1,6 +1,6 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.oopg.nukeit.Interfaces.Spawner;
+import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import processing.core.PGraphics;
 
 import java.util.Random;
@@ -43,7 +43,7 @@ public class AlienSpawner extends Spawner {
 
                 int alienLives     = world.getRandomInRange(alienMinLives, alienMaxLives);
 
-                Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives, 1.3f);
+                Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives, 1300);
                 world.addGameObject(alien);
             }
         };

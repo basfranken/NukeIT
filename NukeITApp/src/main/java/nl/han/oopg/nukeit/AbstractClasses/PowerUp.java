@@ -1,4 +1,4 @@
-package nl.han.oopg.nukeit.Interfaces;
+package nl.han.oopg.nukeit.AbstractClasses;
 
 import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;

@@ -1,14 +1,11 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.SpriteObject;
-
+import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 import java.util.List;
 
-
-public class Asteroid extends SpriteObject implements ICollidableWithGameObjects {
+public class Asteroid extends Enemy {
 
     private NukeITWorld world;
 
@@ -21,7 +18,6 @@ public class Asteroid extends SpriteObject implements ICollidableWithGameObjects
         setY(startY);
         setySpeed(speed);
     }
-
 
     @Override
     public void update() {

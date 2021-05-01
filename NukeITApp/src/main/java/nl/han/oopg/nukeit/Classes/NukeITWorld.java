@@ -4,7 +4,7 @@ import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.objects.TextObject;
 import nl.han.oopg.nukeit.Enums.GameState;
-import nl.han.oopg.nukeit.Interfaces.Spawner;
+import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import processing.core.PImage;
 import nl.han.ica.oopg.view.View;
 

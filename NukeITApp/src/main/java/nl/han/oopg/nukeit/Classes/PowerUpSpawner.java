@@ -1,7 +1,7 @@
 package nl.han.oopg.nukeit.Classes;
 
 import nl.han.oopg.nukeit.Enums.PowerUp;
-import nl.han.oopg.nukeit.Interfaces.Spawner;
+import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import processing.core.PGraphics;
 import java.util.Random;
 import java.util.Timer;
@@ -28,7 +28,8 @@ public class PowerUpSpawner extends Spawner {
             @Override
             public void run() {
                 int powerUpSize         = 60;
-                int powerUpminX          = powerUpSize;
+
+                int powerUpminX         = powerUpSize;
                 int powerUpMaxX         = world.width - powerUpSize;
                 int powerUpX            = world.getRandomInRange(powerUpminX, powerUpMaxX);
 
@@ -53,7 +54,6 @@ public class PowerUpSpawner extends Spawner {
             }
         };
     }
-
 
     private PowerUp pickRandomPowerUp() {
         int index = new Random().nextInt(PowerUp.values().length);

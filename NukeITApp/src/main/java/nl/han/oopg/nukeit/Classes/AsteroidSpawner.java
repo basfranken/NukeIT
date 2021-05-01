@@ -1,13 +1,13 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.oopg.nukeit.Interfaces.Spawner;
+import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 public class AsteroidSpawner extends Spawner {
 
-    private NukeITWorld world;
+    private final NukeITWorld world;
     private TimerTask task;
 
     public AsteroidSpawner(NukeITWorld world, long milliSecondsPerSpawn) {
