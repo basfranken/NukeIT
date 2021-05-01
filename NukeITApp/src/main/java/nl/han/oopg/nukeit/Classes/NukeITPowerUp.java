@@ -1,19 +1,17 @@
 package nl.han.oopg.nukeit.Classes;
-import nl.han.ica.oopg.collision.ICollidableWithGameObjects;
+
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
-import nl.han.ica.oopg.objects.SpriteObject;
-import nl.han.oopg.nukeit.AbstractClasses.Enemy;
-import nl.han.oopg.nukeit.AbstractClasses.Spawner;
+import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 
 import java.util.List;
 
-public class NukeITPowerUp extends SpriteObject implements ICollidableWithGameObjects {
+public class NukeITPowerUp extends PowerUp {
 
     private final NukeITWorld world;
 
     public NukeITPowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/PowerUps/NukeIT.png"));
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/PowerUps/NukeIT.png"), null, world);
         this.world = world;
 
         setWidth(size);
