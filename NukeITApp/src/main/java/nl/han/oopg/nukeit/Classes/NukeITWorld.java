@@ -17,7 +17,7 @@ public class NukeITWorld extends GameEngine {
     private TextObject          livesText;
     private TextObject          scoreText;
     private int                 score;
-    private int                 lives = 3;
+    private int                 lives = 5;
     private GameState           gameState = GameState.GAME;
     private ArrayList<Spawner>  spawners;
 
@@ -51,7 +51,7 @@ public class NukeITWorld extends GameEngine {
 
     private void createObjects() {
         ship = new Ship(this);
-        addGameObject(ship, 500, 899);
+        addGameObject(ship, getWidth() / 2 - ship.getWidth() / 2, getHeight() - ship.getHeight()*2);
     }
 
     private void createDashboards() {
@@ -77,12 +77,12 @@ public class NukeITWorld extends GameEngine {
     }
 
 
-    public void createSpawners(long milliSecondsPerAsteroid, double milliSecondsPerAlien, double milliSecondsPerPowerUp) {
+    public void createSpawners(long milliSecondsPerAsteroid, long milliSecondsPerAlien, long milliSecondsPerPowerUp) {
         spawners = new ArrayList<>();
 
-        addGameObject(new AsteroidSpawner(this, (long) milliSecondsPerAsteroid));
-        addGameObject(new AlienSpawner(this, (long) milliSecondsPerAlien));
-        addGameObject(new PowerUpSpawner(this, (long) milliSecondsPerPowerUp));
+        addGameObject(new AsteroidSpawner(this, milliSecondsPerAsteroid));
+        addGameObject(new AlienSpawner(this, milliSecondsPerAlien));
+        addGameObject(new PowerUpSpawner(this, milliSecondsPerPowerUp));
 
     }
 
