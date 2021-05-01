@@ -1,32 +1,30 @@
-
 package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.alarm.IAlarmListener;
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.oopg.nukeit.Enums.PowerUp;
 import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
-
 import java.util.Random;
 
-public class PowerUpSpawner extends GameObject implements Spawner, IAlarmListener  {
+public class PowerUpSpawner extends Spawner {
 
     private NukeITWorld world;
     private Random random;
-    private float spawnsPerSecond;
-    private Alarm alarm;
 
     public PowerUpSpawner(NukeITWorld world, float spawnsPerSecond) {
-        this.spawnsPerSecond = spawnsPerSecond;
+        super(new Alarm("New PowerUp", 1 / spawnsPerSecond));
         this.world = world;
         random = new Random();
         startAlarm();
     }
 
+    public void startAlarm() {
+        getAlarm().addTarget(this);
+        getAlarm().start();
+    }
+
     @Override
     public void triggerAlarm(String s) {
-
         int powerUpSize         = 60;
         int powerUpinX          = powerUpSize;
         int powerUpMaxX         = world.width - powerUpSize;
@@ -50,20 +48,13 @@ public class PowerUpSpawner extends GameObject implements Spawner, IAlarmListene
                 world.addGameObject(new LifePowerUp(world, powerUpSize), powerUpX, powerUpY);
                 break;
         }
-
-        startAlarm();
+        //startAlarm();
+        getAlarm().addTarget(this);
     }
 
     @Override
     public void stopSpawning() {
-        alarm.stop();
-    }
-
-
-    public void startAlarm() {
-        alarm = new Alarm("New PowerUp", 1 / spawnsPerSecond);
-        alarm.addTarget(this);
-        alarm.start();
+        getAlarm().stop();
     }
 
 

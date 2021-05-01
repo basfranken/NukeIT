@@ -1,37 +1,31 @@
-
 package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.alarm.IAlarmListener;
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
 
 import java.util.Random;
 
-public class AsteroidSpawner extends GameObject implements Spawner, IAlarmListener {
+public class AsteroidSpawner extends Spawner {
 
     private NukeITWorld world;
     private Random random;
-    private float spawnsPerSecond;
-    private Alarm alarm;
 
     public AsteroidSpawner(NukeITWorld world, float spawnsPerSecond) {
-        this.spawnsPerSecond = spawnsPerSecond;
+        super(new Alarm("New Asteroid", 1 / spawnsPerSecond));
         this.world = world;
         random = new Random();
         startAlarm();
     }
 
     public void startAlarm() {
-        alarm = new Alarm("New asteroid", 1 / spawnsPerSecond);
-        alarm.addTarget(this);
-        alarm.start();
+        getAlarm().addTarget(this);
+        //getAlarm().start();
     }
 
 
     @Override
-    public void triggerAlarm(String alarmName) {
+    public void triggerAlarm(String s) {
 
         int asteroidSize         = 100;
 
@@ -45,15 +39,13 @@ public class AsteroidSpawner extends GameObject implements Spawner, IAlarmListen
         int asteroidMinSpeed  = 2;
         int asteroidspeed     = random.nextInt(asteroidMaxSpeed-asteroidMinSpeed) + asteroidMinSpeed;
 
-        Asteroid asteroid = new Asteroid(world, asteroidX, asteroidY, asteroidspeed, asteroidSize);
-        world.addGameObject(asteroid);
-
+        world.addGameObject(new Asteroid(world, asteroidX, asteroidY, asteroidspeed, asteroidSize));
         startAlarm();
     }
 
     @Override
     public void stopSpawning() {
-        alarm.stop();
+        getAlarm().stop();
     }
 
 
@@ -66,4 +58,5 @@ public class AsteroidSpawner extends GameObject implements Spawner, IAlarmListen
     public void draw(PGraphics pGraphics) {
 
     }
+
 }
