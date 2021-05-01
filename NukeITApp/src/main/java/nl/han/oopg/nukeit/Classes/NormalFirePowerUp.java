@@ -7,7 +7,7 @@ import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 public class NormalFirePowerUp extends PowerUp {
 
     public NormalFirePowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/normal fire.png"), FireMode.NORMAL, world);
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/PowerUps/normal fire.png"), FireMode.NORMAL, world);
         setWidth(size);
         setHeight(size);
     }

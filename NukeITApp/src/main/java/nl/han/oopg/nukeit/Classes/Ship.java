@@ -93,7 +93,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
-            if (obj instanceof Asteroid) {
+            if (obj instanceof Alien) {
                 world.subtractLife();
             }
             if (obj instanceof AlienBullet) {

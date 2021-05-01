@@ -9,14 +9,14 @@ import java.util.List;
 public class AlienBullet extends Bullet {
 
     private final NukeITWorld world;
-    final int width     = 10;
-    final int height    = 40;
 
     public AlienBullet(NukeITWorld world, int startX, int startY, int speed) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/enemyBullet.png"), world);
         this.world = world;
-        this.setWidth(width);
-        this.setHeight(height);
+
+        this.setWidth(10);
+        this.setHeight(40);
+
         setX(startX);
         setY(startY);
         setySpeed(speed);

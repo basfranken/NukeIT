@@ -27,6 +27,7 @@ public class PowerUpSpawner extends Spawner {
 
             @Override
             public void run() {
+
                 int powerUpSize         = 60;
 
                 int powerUpminX         = powerUpSize;
@@ -50,6 +51,8 @@ public class PowerUpSpawner extends Spawner {
                     case LIFE:
                         world.addGameObject(new LifePowerUp(world, powerUpSize), powerUpX, powerUpY);
                         break;
+                    case NUKEIT:
+                        world.addGameObject(new NukeITPowerUp(world, powerUpSize), powerUpX, powerUpY);
                 }
             }
         };

@@ -25,6 +25,7 @@ public abstract class PowerUp extends SpriteObject implements ICollidableWithGam
         return fireMode;
     }
 
+
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {

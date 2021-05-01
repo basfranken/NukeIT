@@ -8,7 +8,7 @@ import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 public class TripleShotPowerUp extends PowerUp {
 
     public TripleShotPowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/triple shot.png"), FireMode.TRIPLE, world);
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/PowerUps/triple shot.png"), FireMode.TRIPLE, world);
         setWidth(size);
         setHeight(size);
     }

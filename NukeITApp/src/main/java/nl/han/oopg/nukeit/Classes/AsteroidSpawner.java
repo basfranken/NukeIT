@@ -31,8 +31,8 @@ public class AsteroidSpawner extends Spawner {
 
                 int asteroidY         = 0;
 
-                int asteroidMaxSpeed  = 7;
-                int asteroidMinSpeed  = 2;
+                int asteroidMaxSpeed  = 10;
+                int asteroidMinSpeed  = 4;
                 int asteroidSpeed     = world.getRandomInRange(asteroidMinSpeed, asteroidMaxSpeed);
 
                 world.addGameObject(new Asteroid(world, asteroidX, asteroidY, asteroidSpeed, asteroidSize));

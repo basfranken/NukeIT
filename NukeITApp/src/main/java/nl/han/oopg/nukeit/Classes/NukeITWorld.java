@@ -37,7 +37,7 @@ public class NukeITWorld extends GameEngine {
 
         createDashboards();
 
-        createSpawners(2000, 5000, 3000);
+        createSpawners(1000, 4000, 3000);
 
     }
 
@@ -87,12 +87,16 @@ public class NukeITWorld extends GameEngine {
     }
 
     public void subtractLife() {
-        lives --;
+        if (lives >= 0) {
+            lives--;
+        } else {
+            lives = 0;
+        }
         livesText.setText("LIVES: " + lives);
     }
 
     public void addLife() {
-        lives ++;
+        lives++;
         livesText.setText("LIVES: " + lives);
     }
 

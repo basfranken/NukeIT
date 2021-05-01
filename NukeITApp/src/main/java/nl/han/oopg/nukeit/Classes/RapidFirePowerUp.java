@@ -8,7 +8,7 @@ import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 public class RapidFirePowerUp extends PowerUp {
 
     public RapidFirePowerUp(NukeITWorld world, int size) {
-        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/rapid fire.png"), FireMode.RAPID, world);
+        super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/PowerUps/rapid fire.png"), FireMode.RAPID, world);
         setWidth(size);
         setHeight(size);
     }
