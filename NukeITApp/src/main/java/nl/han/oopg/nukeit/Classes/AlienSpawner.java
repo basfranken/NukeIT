@@ -1,7 +1,5 @@
 package nl.han.oopg.nukeit.Classes;
 
-import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.oopg.nukeit.Interfaces.Spawner;
 import processing.core.PGraphics;
 
@@ -9,20 +7,19 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AlienSpawner extends GameObject {
+public class AlienSpawner extends Spawner {
 
     private NukeITWorld world;
     private Random random;
     private TimerTask task;
-    private Timer timer;
 
-    public AlienSpawner(NukeITWorld world, float spawnsPerSecond) {
-        //super(new Alarm("New Alien", 1 / spawnsPerSecond));
+
+    public AlienSpawner(NukeITWorld world, long milliSecondsPerSpawn) {
+        super(new Timer());
         this.world = world;
         random = new Random();
-        timer = new Timer();
         setTask();
-        timer.schedule(task, 0, 1000);
+        getTimer().schedule(task, 0, milliSecondsPerSpawn);
     }
 
     private void setTask() {
@@ -45,7 +42,7 @@ public class AlienSpawner extends GameObject {
 
                 int alienLives     = world.getRandomInRange(alienMinLives, alienMaxLives);
 
-                Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives, 2f);
+                Alien alien = new Alien(world, AlienX, ALienY, alienWidth, alienHeight, alienSpeed, alienLives, 1.3f);
                 world.addGameObject(alien);
             }
         };
@@ -61,13 +58,4 @@ public class AlienSpawner extends GameObject {
 
     }
 
-
-
-    /*
-    @Override
-    public void stopSpawning() {
-        //getAlarm().stop();
-        timer.cancel();
-    }
-     */
 }

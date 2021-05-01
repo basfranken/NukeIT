@@ -38,7 +38,7 @@ public class NukeITWorld extends GameEngine {
 
         createDashboards();
 
-        createSpawners(3f, 0.4f, 0.1f);
+        createSpawners(2000, 5000, 3000);
 
     }
 
@@ -78,12 +78,12 @@ public class NukeITWorld extends GameEngine {
     }
 
 
-    public void createSpawners(float asteroidsPerSecond, float aliensPerSecond, float powerUpsPerSecond) {
+    public void createSpawners(long milliSecondsPerAsteroid, double milliSecondsPerAlien, double milliSecondsPerPowerUp) {
         spawners = new ArrayList<>();
 
-        addGameObject(new AsteroidSpawner(this, asteroidsPerSecond));
-        addGameObject(new AlienSpawner(this, aliensPerSecond));
-        addGameObject(new PowerUpSpawner(this, powerUpsPerSecond));
+        addGameObject(new AsteroidSpawner(this, (long) milliSecondsPerAsteroid));
+        addGameObject(new AlienSpawner(this, (long) milliSecondsPerAlien));
+        addGameObject(new PowerUpSpawner(this, (long) milliSecondsPerPowerUp));
 
     }
 

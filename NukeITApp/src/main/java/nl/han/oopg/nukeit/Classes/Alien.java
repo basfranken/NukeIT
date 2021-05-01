@@ -37,7 +37,7 @@ public class Alien extends SpriteObject implements ICollidableWithGameObjects, I
     }
 
     private void shoot() {
-        world.addGameObject(new AlienBullet(world, (int) getX(), (int) getY(), 8));
+        world.addGameObject(new AlienBullet(world, (int) (getX() + getWidth() / 2), (int) getY(), 8));
     }
 
     public void startAlarm() {

@@ -1,16 +1,16 @@
 package nl.han.oopg.nukeit.Interfaces;
 
-import nl.han.ica.oopg.alarm.Alarm;
-import nl.han.ica.oopg.alarm.IAlarmListener;
 import nl.han.ica.oopg.objects.GameObject;
 import processing.core.PGraphics;
 
-public abstract class Spawner extends GameObject implements IAlarmListener {
+import java.util.Timer;
 
-    private Alarm alarm;
+public abstract class Spawner extends GameObject {
 
-    public Spawner(Alarm alarm){
-        this.alarm = alarm;
+    private final Timer timer;
+
+    public Spawner(Timer timer){
+        this.timer = timer;
     }
 
     @Override
@@ -23,13 +23,12 @@ public abstract class Spawner extends GameObject implements IAlarmListener {
 
     }
 
-    public abstract void startAlarm();
+    public Timer getTimer() {
+        return timer;
+    }
 
     public void stopSpawning() {
-        alarm.stop();
+        timer.cancel();
     }
 
-    public Alarm getAlarm() {
-        return alarm;
-    }
 }
