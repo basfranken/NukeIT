@@ -58,13 +58,13 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
             setySpeed(0);
             setY(0);
         }
-        if (getX() >= world.width - width) {
+        if (getX() >= world.getWidth() - width) {
             setxSpeed(0);
-            setX(world.width - width);
+            setX(world.getWidth() - width);
         }
-        if (getY() >= world.height - height) {
+        if (getY() >= world.getHeight() - height) {
             setySpeed(0);
-            setY(world.height - height);
+            setY(world.getHeight() - height);
         }
     }
 
@@ -93,11 +93,13 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
-            if (obj instanceof Alien) {
-                world.subtractLife();
-            }
             if (obj instanceof AlienBullet) {
                 world.subtractLife();
+                break;
+            }
+            if (obj instanceof Asteroid) {
+                world.subtractLife();
+                break;
             }
         }
     }

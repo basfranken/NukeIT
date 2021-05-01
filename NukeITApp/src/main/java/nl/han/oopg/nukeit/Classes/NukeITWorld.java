@@ -80,10 +80,13 @@ public class NukeITWorld extends GameEngine {
     public void createSpawners(long milliSecondsPerAsteroid, long milliSecondsPerAlien, long milliSecondsPerPowerUp) {
         spawners = new ArrayList<>();
 
-        addGameObject(new AsteroidSpawner(this, milliSecondsPerAsteroid));
-        addGameObject(new AlienSpawner(this, milliSecondsPerAlien));
-        addGameObject(new PowerUpSpawner(this, milliSecondsPerPowerUp));
+        spawners.add(new AsteroidSpawner(this, milliSecondsPerAsteroid));
+        spawners.add(new AlienSpawner(this, milliSecondsPerAlien));
+        spawners.add(new PowerUpSpawner(this, milliSecondsPerPowerUp));
 
+        for(Spawner i : spawners) {
+            addGameObject(i);
+        }
     }
 
     public void subtractLife() {
