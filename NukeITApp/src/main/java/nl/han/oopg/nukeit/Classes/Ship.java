@@ -12,7 +12,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
 
     final int width = 100;
     final int height = 125;
-    private NukeITWorld world;
+    private final NukeITWorld world;
     FireMode fireMode = FireMode.NORMAL;
 
 
