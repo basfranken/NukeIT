@@ -27,7 +27,7 @@ public class NukeITWorld extends GameEngine {
     private int                 lives = 1;
     private GameState           gameState = GameState.START;
     private ArrayList<Spawner>  spawners;
-    private int                 diffiulty = 1;
+    private int                 difficulty = 1;
     private TextObject          endGameText;
     private TextObject          returnText;
 
@@ -55,7 +55,7 @@ public class NukeITWorld extends GameEngine {
             createObjects();
             createDashboards();
 
-            createSpawners(1000 - (50 * diffiulty), 4000 - (100 * diffiulty), 3000 - (100 * diffiulty));
+            createSpawners(1000 - (50 * difficulty), 4000 - (100 * difficulty), 3000 - (100 * difficulty));
         }
 
     }
@@ -167,8 +167,8 @@ public class NukeITWorld extends GameEngine {
         }
     }
     public void updateDifficulty(int diffiultyToAdd) {
-        diffiulty = diffiulty + diffiultyToAdd;
-        difficultyText.setText("Difficulty : " + diffiulty);
+        difficulty = difficulty + diffiultyToAdd;
+        difficultyText.setText("Difficulty : " + difficulty);
     }
 
     boolean overRect(int x, int y, int width, int height)  {
@@ -186,9 +186,9 @@ public class NukeITWorld extends GameEngine {
 
         if (gameState == GameState.START) {
             if(overRect(50, 50, 100, 100)){
-                print(diffiulty);
-                if (diffiulty <= -5){
-                    diffiulty = -5;
+                print(difficulty);
+                if (difficulty <= -5){
+                    difficulty = -5;
                 }
                 else{
                     updateDifficulty(-1);
@@ -196,9 +196,9 @@ public class NukeITWorld extends GameEngine {
                 }
             }
             if(overRect(getView().getWorldWidth()-200, 50, 100, 100)){
-                print(diffiulty);
-                if (diffiulty >= 5){
-                    diffiulty = 5;
+                print(difficulty);
+                if (difficulty >= 5){
+                    difficulty = 5;
                 }
                 else{
                     updateDifficulty(1);
@@ -253,7 +253,7 @@ public class NukeITWorld extends GameEngine {
         addGameObject(startGameTexT, getView().getWorldWidth() / 2 - 300, getView().getWorldHeight()/2);
 
 
-        difficultyText = new TextObject("Difficulty level: " + diffiulty, 45);
+        difficultyText = new TextObject("Difficulty level: " + difficulty, 45);
         difficultyText.setForeColor(255, 0, 0, 255);
         addGameObject(difficultyText, getView().getWorldWidth() / 2 -150, 75);
 
