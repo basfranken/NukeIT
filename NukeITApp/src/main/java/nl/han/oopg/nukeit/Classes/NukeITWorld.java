@@ -40,7 +40,7 @@ public class NukeITWorld extends GameEngine {
     private int                 lives = startLives;
 
     private int                 difficulty = 1;
-    private GameState           gameState = GameState.START;
+    public GameState            gameState = GameState.START;
     private ArrayList<Spawner>  spawners;
 
     public static void main(String[] args) {
