@@ -200,7 +200,7 @@ public class NukeITWorld extends GameEngine {
         deleteAllDashboards();
 
         for(Spawner i : spawners) {
-           i.stopSpawning();
+            i.stopSpawning();
         }
 
         gameState = GameState.END;
@@ -227,7 +227,14 @@ public class NukeITWorld extends GameEngine {
         difficultyText.setText("Difficulty : " + difficulty);
     }
 
-
+    /***
+     * Check if location of the mouse is currently over a rectangle.
+     * @param x         x posisition of rectangle to check.
+     * @param y         y posisition of rectangle to check.
+     * @param width     width of rectangle to check.
+     * @param height    height of rectangle to check.
+     * @return          true if mouse is over rectangle, false if not.
+     */
     boolean overRect(int x, int y, int width, int height)  {
         return mouseX >= x && mouseX <= x + width &&
                 mouseY >= y && mouseY <= y + height;

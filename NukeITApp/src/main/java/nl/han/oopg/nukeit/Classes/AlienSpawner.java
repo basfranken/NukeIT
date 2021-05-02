@@ -13,7 +13,11 @@ public class AlienSpawner extends Spawner {
     private Random random;
     private TimerTask task;
 
-
+    /***
+     * Constructor
+     * @param world GameEngine.
+     * @param milliSecondsPerSpawn Milliseconds between spawns.
+     */
     public AlienSpawner(NukeITWorld world, long milliSecondsPerSpawn) {
         super(new Timer());
         this.world = world;

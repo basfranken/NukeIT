@@ -9,6 +9,14 @@ public class Asteroid extends Enemy {
 
     private NukeITWorld world;
 
+    /***
+     * Constructore
+     * @param world GameEngine
+     * @param startX Starting X position
+     * @param startY Starting Y position
+     * @param speed Asteroid's speed of travel.
+     * @param size  Asteroid's size.
+     */
     public Asteroid(NukeITWorld world, int startX, int startY, int speed, int size) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroid.png"));
         this.world = world;
