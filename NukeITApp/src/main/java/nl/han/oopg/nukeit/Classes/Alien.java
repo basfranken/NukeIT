@@ -32,7 +32,7 @@ public class Alien extends Enemy {
         setDirection(90);
 
         startShooting();
-        Enemy.aliens.add(this);
+        getAliens().add(this);
     }
 
     public void stopShooting() {
@@ -75,7 +75,6 @@ public class Alien extends Enemy {
             world.deleteGameObject(this);
         }
     }
-
 
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {

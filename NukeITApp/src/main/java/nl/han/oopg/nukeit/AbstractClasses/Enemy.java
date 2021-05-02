@@ -19,4 +19,7 @@ public abstract class Enemy extends SpriteObject implements ICollidableWithGameO
         super(sprite);
     }
 
+    public ArrayList<Alien> getAliens() {
+        return aliens;
+    }
 }

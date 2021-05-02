@@ -37,7 +37,6 @@ public class NukeITPowerUp extends PowerUp {
                 world.deleteAllGameObjectsOfType(Alien.class);
                 world.deleteGameObject(this);
                 world.updateScore(2000);
-                //todo image of nuke overlay screen
             }
         }
     }
