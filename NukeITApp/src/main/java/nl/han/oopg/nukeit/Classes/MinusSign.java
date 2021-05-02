@@ -20,7 +20,6 @@ public class MinusSign extends SpriteObject{
         setHeight(100);
     }
 
-
     @Override
     public void update() {
 
