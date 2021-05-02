@@ -287,6 +287,10 @@ public class NukeITWorld extends GameEngine {
         }
     }
 
+    /***
+     * Loads a text with your score so people can see their scores
+     * Loads a text so people have an indicator of what to do if they wanna play again
+     */
     public void scoreScreen(){
         endGameText = new TextObject("uw score is: " + score, 40);
         endGameText.setForeColor(255, 0, 0, 255);
@@ -297,6 +301,13 @@ public class NukeITWorld extends GameEngine {
         addGameObject(returnText, getView().getWorldWidth()/2-400, 500);
     }
 
+    /***
+     * loads in music
+     * uses plusSign class to generate a plus sign to increase difficulty
+     * uses minusSign class to generate a minus sign to decrease difficulty
+     * loads a text so people have an indicator where to click if they wanna start
+     * loads a text that displays the current difficulty
+     */
     public void selectionScreen() {
         getMusic().cue(0);
         getMusic().play();
