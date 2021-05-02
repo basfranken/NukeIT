@@ -1,3 +1,5 @@
+
+
 package nl.han.oopg.nukeit.Classes;
 import nl.han.ica.oopg.sound.Sound;
 import nl.han.ica.oopg.dashboard.Dashboard;
@@ -11,6 +13,7 @@ import nl.han.ica.oopg.view.View;
 
 import java.util.ArrayList;
 import java.util.Random;
+
 
 public class NukeITWorld extends GameEngine {
 
@@ -30,8 +33,6 @@ public class NukeITWorld extends GameEngine {
     private int                 difficulty = 1;
     private TextObject          endGameText;
     private TextObject          returnText;
-
-
 
 
 
@@ -69,11 +70,13 @@ public class NukeITWorld extends GameEngine {
         size(worldWith, worldHeight);
     }
 
+
     private void createObjects() {
         ship = new Ship(this);
         addGameObject(ship, getWidth() / 2 - ship.getWidth() / 2, getHeight() - ship.getHeight()*2);
 
     }
+
 
     private void createDashboards() {
 
@@ -169,12 +172,8 @@ public class NukeITWorld extends GameEngine {
     }
 
     boolean overRect(int x, int y, int width, int height)  {
-        if (mouseX >= x && mouseX <= x+width &&
-                mouseY >= y && mouseY <= y+height) {
-            return true;
-        } else {
-            return false;
-        }
+        return mouseX >= x && mouseX <= x + width &&
+                mouseY >= y && mouseY <= y + height;
     }
 
     @Override
