@@ -2,7 +2,6 @@ package nl.han.oopg.nukeit.Classes;
 import nl.han.ica.oopg.sound.Sound;
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
-import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.TextObject;
 import nl.han.oopg.nukeit.Enums.GameState;
 import nl.han.oopg.nukeit.AbstractClasses.Spawner;
@@ -63,14 +62,14 @@ public class NukeITWorld extends GameEngine {
             createObjects();
             createDashboards();
 
-            createSpawners(1000 - (125 * difficulty), 4000 - (100 * difficulty), 3000 - (100 * difficulty));
+            createSpawners(1000 - (125L * difficulty), 4000 - (100L * difficulty), 3000 - (100L * difficulty));
         }
     }
 
     /***
      * creates a view
-     * @param worldWith
-     * @param worldHeight
+     * @param worldWith   Width of the game world.
+     * @param worldHeight Hieght of the game world.
      */
     private void createView(int worldWith, int worldHeight){
         View view = new View(worldWith, worldHeight);
@@ -175,7 +174,7 @@ public class NukeITWorld extends GameEngine {
         shipShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser2.wav");
         alienShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser.wav");
         music = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/alien-spaceship.mp3");
-        astroidSpawn = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/tingle.mp3");
+        astroidSpawn = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroidSpawnSound.mp3");
 
     }
 
