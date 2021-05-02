@@ -61,9 +61,6 @@ public class NukeITWorld extends GameEngine {
     }
 
 
-
-
-
     private void createView(int worldWith, int worldHeight){
         View view = new View(worldWith, worldHeight);
         PImage backgroundImg = loadImage("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/background.jpg");
@@ -129,7 +126,7 @@ public class NukeITWorld extends GameEngine {
 
 
     public void soundBite(){
-        jump = new Sound(this, "C:/IdeaProjects/NukeIT/NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroidSpawnSound.mp3");
+        jump = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroidSpawnSound.mp3");
         jump.cue(0);
         jump.play();
     }
