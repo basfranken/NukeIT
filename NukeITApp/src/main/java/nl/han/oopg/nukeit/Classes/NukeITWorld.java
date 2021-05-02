@@ -68,7 +68,11 @@ public class NukeITWorld extends GameEngine {
 
     }
 
-
+    /***
+     * creates a view
+     * @param worldWith
+     * @param worldHeight
+     */
     private void createView(int worldWith, int worldHeight){
         View view = new View(worldWith, worldHeight);
         PImage backgroundImg = loadImage("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/background.jpg");
@@ -303,7 +307,7 @@ public class NukeITWorld extends GameEngine {
 
     /***
      * Loads a text with your score so people can see their scores
-     * Loads a text so people have an indicator of what to do if they wanna play again
+     * Loads a text so people have an indicator of what to do if they want to play again
      */
     public void scoreScreen(){
         endGameText = new TextObject("uw score is: " + score, 40);
@@ -319,7 +323,7 @@ public class NukeITWorld extends GameEngine {
      * loads in music
      * uses plusSign class to generate a plus sign to increase difficulty
      * uses minusSign class to generate a minus sign to decrease difficulty
-     * loads a text so people have an indicator where to click if they wanna start
+     * loads a text so people have an indicator where to click if they want to start
      * loads a text that displays the current difficulty
      */
     public void selectionScreen() {
