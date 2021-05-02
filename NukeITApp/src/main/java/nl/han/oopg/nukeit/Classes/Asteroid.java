@@ -26,8 +26,6 @@ public class Asteroid extends Enemy {
         setX(startX);
         setY(startY);
         setySpeed(speed);
-        //world.getAstroidSpawn().cue(0);
-        //world.getAstroidSpawn().play();
     }
 
 

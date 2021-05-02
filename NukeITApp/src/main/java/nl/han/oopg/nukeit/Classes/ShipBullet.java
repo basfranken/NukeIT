@@ -3,6 +3,7 @@ package nl.han.oopg.nukeit.Classes;
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.oopg.nukeit.AbstractClasses.Bullet;
+import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 
 import java.util.List;
 
@@ -37,10 +38,7 @@ public class ShipBullet extends Bullet {
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
-            if (obj instanceof Asteroid) {  //TODO if object implements enemy interface
-                world.deleteGameObject(this);
-            }
-            if (obj instanceof Alien) {     //TODO if object implements enemy interface
+            if (obj instanceof Enemy) {  //TODO if object implements enemy interface
                 world.deleteGameObject(this);
             }
         }
