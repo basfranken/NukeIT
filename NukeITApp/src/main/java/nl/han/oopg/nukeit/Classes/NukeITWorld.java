@@ -37,7 +37,6 @@ public class NukeITWorld extends GameEngine {
     private int                 score;
     private int                 lives = 3;
     private int                 difficulty = 1;
-    private int                 maxLives = 5;
     private GameState           gameState = GameState.START;
     private ArrayList<Spawner>  spawners;
 
@@ -144,6 +143,7 @@ public class NukeITWorld extends GameEngine {
      * If 'lives' is greater than 'maxLives' it sets 'lives' equal to 'maxLives'
      */
     public void addLife() {
+        int maxLives = 5;
         if (lives <= maxLives) {
             lives++;
         }
