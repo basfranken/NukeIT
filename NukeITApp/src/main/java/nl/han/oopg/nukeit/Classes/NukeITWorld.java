@@ -1,7 +1,8 @@
 package nl.han.oopg.nukeit.Classes;
-
+import nl.han.ica.oopg.sound.Sound;
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
+import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.TextObject;
 import nl.han.oopg.nukeit.Enums.GameState;
 import nl.han.oopg.nukeit.AbstractClasses.Spawner;
@@ -13,13 +14,26 @@ import java.util.Random;
 
 public class NukeITWorld extends GameEngine {
 
+
+    private Sound               jump;
+    public  MinusSign           minusSign;
+    public  PlusSign            plusSign;
     public  Ship                ship;
     private TextObject          livesText;
     private TextObject          scoreText;
+    private TextObject          difficultyText;
+    private TextObject          startGameTexT;
     private int                 score;
-    private int                 lives = 5;
-    private GameState           gameState = GameState.GAME;
+    private int                 lives = 1;
+    private GameState           gameState = GameState.START;
     private ArrayList<Spawner>  spawners;
+    private int                 diffiulty = 1;
+    private TextObject          endGameText;
+    private TextObject          returnText;
+
+
+
+
 
     public static void main(String[] args) {
         NukeITWorld app = new NukeITWorld();
@@ -32,14 +46,23 @@ public class NukeITWorld extends GameEngine {
         int worldHeight = 900;
 
         createView(worldWith, worldHeight);
+        if (gameState == GameState.START){
+            selectionScreen();
+        }
+        if (gameState == GameState.GAME) {
 
-        createObjects();
+            //backGroundy();
+            createObjects();
+            createDashboards();
 
-        createDashboards();
-
-        createSpawners(1000, 4000, 3000);
+            createSpawners(1000 - (50 * diffiulty), 4000 - (100 * diffiulty), 3000 - (100 * diffiulty));
+        }
 
     }
+
+
+
+
 
     private void createView(int worldWith, int worldHeight){
         View view = new View(worldWith, worldHeight);
@@ -52,6 +75,7 @@ public class NukeITWorld extends GameEngine {
     private void createObjects() {
         ship = new Ship(this);
         addGameObject(ship, getWidth() / 2 - ship.getWidth() / 2, getHeight() - ship.getHeight()*2);
+
     }
 
     private void createDashboards() {
@@ -104,6 +128,15 @@ public class NukeITWorld extends GameEngine {
     }
 
 
+    public void soundBite(){
+        jump = new Sound(this, "C:/IdeaProjects/NukeIT/NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroidSpawnSound.mp3");
+        jump.cue(0);
+        jump.play();
+    }
+
+
+
+
     public void updateScore(int scoreToAdd) {
         score = score + scoreToAdd;
         scoreText.setText("SCORE : " + score);
@@ -123,14 +156,109 @@ public class NukeITWorld extends GameEngine {
         }
 
         gameState = GameState.END;
+        scoreScreen();
     }
 
     @Override
     public void update() {
         if (lives <= 0) {
             stopGame();
+
         }
     }
+    public void updateDifficulty(int diffiultyToAdd) {
+        diffiulty = diffiulty + diffiultyToAdd;
+        difficultyText.setText("Difficulty : " + diffiulty);
+    }
+
+    boolean overRect(int x, int y, int width, int height)  {
+        if (mouseX >= x && mouseX <= x+width &&
+                mouseY >= y && mouseY <= y+height) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public void mousePressed() {
+
+
+        if (gameState == GameState.START) {
+            if(overRect(50, 50, 100, 100)){
+                print(diffiulty);
+                if (diffiulty <= -5){
+                    diffiulty = -5;
+                }
+                else{
+                    updateDifficulty(-1);
+
+                }
+            }
+            if(overRect(getView().getWorldWidth()-200, 50, 100, 100)){
+                print(diffiulty);
+                if (diffiulty >= 5){
+                    diffiulty = 5;
+                }
+                else{
+                    updateDifficulty(1);
+
+                }
+            }
+            if(overRect(0, 300, getView().getWorldWidth(), getView().getWorldHeight())){
+                deleteGameObject(plusSign);
+                deleteGameObject(minusSign);
+                deleteGameObject(difficultyText);
+                deleteGameObject(startGameTexT);
+                gameState = GameState.GAME;
+                lives = 1;
+                setupGame();
+            }
+        }
+        if (gameState == GameState.END) {
+
+
+            if(overRect(0, 0, getView().getWorldWidth(),  getView().getWorldHeight())){
+
+                deleteGameObject(endGameText);
+                deleteGameObject(returnText);
+                gameState = GameState.START;
+                lives = 1;
+                score = 0;
+                selectionScreen();
+
+
+            }
+        }
+    }
+
+    public void scoreScreen(){
+        endGameText = new TextObject("uw score is: " + score, 40);
+        endGameText.setForeColor(255, 0, 0, 255);
+        addGameObject(endGameText, getView().getWorldWidth()/2-200, 50);
+
+        returnText = new TextObject("Click here to go back to startscreen" , 50);
+        returnText.setForeColor(255, 0, 0, 255);
+        addGameObject(returnText, getView().getWorldWidth()/2-400, 500);
+    }
+    public void selectionScreen() {
+        plusSign = new PlusSign(this);
+        addGameObject(plusSign, 50, 50);
+
+        minusSign = new MinusSign(this);
+        addGameObject(minusSign, getView().getWorldWidth() - 200, 50);
+
+        startGameTexT = new TextObject("Click here to start", 60);
+        startGameTexT.setForeColor(255, 0, 0, 255);
+        addGameObject(startGameTexT, getView().getWorldWidth() / 2 - 300, getView().getWorldHeight()/2);
+
+
+        difficultyText = new TextObject("Difficulty level: " + diffiulty, 45);
+        difficultyText.setForeColor(255, 0, 0, 255);
+        addGameObject(difficultyText, getView().getWorldWidth() / 2 -150, 75);
+
+    }
+
 
 }
 

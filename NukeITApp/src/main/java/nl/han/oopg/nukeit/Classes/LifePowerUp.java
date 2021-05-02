@@ -26,6 +26,7 @@ public class LifePowerUp extends SpriteObject implements ICollidableWithGameObje
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Ship) {
+
                 world.addLife();
                 world.deleteGameObject(this);
             }

@@ -27,6 +27,7 @@ public class NukeITPowerUp extends PowerUp {
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Ship) {
+
                 world.deleteAllGameObjectsOfType(Asteroid.class);
                 world.deleteAllGameObjectsOfType(Alien.class);
                 world.deleteGameObject(this);

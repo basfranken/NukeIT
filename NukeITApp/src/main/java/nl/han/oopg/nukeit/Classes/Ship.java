@@ -75,6 +75,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
 
         if (keyCode == world.LEFT) {
             setDirectionSpeed(270, speed);
+
         }
         if (keyCode == world.UP) {
             setDirectionSpeed(0, speed);
@@ -86,6 +87,7 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
             setDirectionSpeed(180, speed);
         }
         if (keyCode == ' ') {
+            world.soundBite();
             shoot();
         }
     }
