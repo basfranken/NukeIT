@@ -36,14 +36,14 @@ public class Alien extends Enemy {
         timer.schedule(task, 0, (long) fireRate);
     }
 
-    public void setTask() {
+    private void setTask() {
         task = new TimerTask() {
 
             @Override
             public void run() {
                 world.addGameObject(new AlienBullet(world, (int) (getX() + getWidth() / 2), (int) getY(), 8));
-                world.getAlienShoot().cue(0);
-                world.getAlienShoot().play();
+                //world.getAlienShoot().cue(0);
+                //world.getAlienShoot().play();
             }
         };
     }

@@ -22,7 +22,7 @@ public abstract class PowerUp extends SpriteObject implements ICollidableWithGam
         this.world = world;
     }
 
-    public FireMode getFireMode() {
+    private FireMode getFireMode() {
         return fireMode;
     }
 
