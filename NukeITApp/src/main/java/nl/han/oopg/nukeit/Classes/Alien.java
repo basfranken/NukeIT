@@ -32,15 +32,17 @@ public class Alien extends Enemy {
         setDirection(90);
 
         startShooting();
+        Enemy.aliens.add(this);
+    }
 
+    public void stopShooting() {
+        timer.cancel();
     }
 
     private void startShooting() {
         setTask();
         timer = new Timer();
         timer.schedule(task, 0, (long) fireRate);
-
-
     }
 
     private void setTask() {
@@ -69,7 +71,7 @@ public class Alien extends Enemy {
 
         if (lives <= 0) {
             timer.cancel();
-
+            Enemy.aliens.remove(this);
             world.deleteGameObject(this);
         }
     }

@@ -1,8 +1,10 @@
 package nl.han.oopg.nukeit.Classes;
+import javafx.scene.control.Alert;
 import nl.han.ica.oopg.sound.Sound;
 import nl.han.ica.oopg.dashboard.Dashboard;
 import nl.han.ica.oopg.engine.GameEngine;
 import nl.han.ica.oopg.objects.TextObject;
+import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 import nl.han.oopg.nukeit.Enums.GameState;
 import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import processing.core.PImage;
@@ -215,6 +217,10 @@ public class NukeITWorld extends GameEngine {
 
         for(Spawner i : spawners) {
             i.stopSpawning();
+        }
+
+        for(Alien i : Enemy.aliens) {
+            i.stopShooting();
         }
 
         gameState = GameState.END;

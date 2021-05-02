@@ -2,6 +2,7 @@ package nl.han.oopg.nukeit.Classes;
 
 import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
+import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 import nl.han.oopg.nukeit.AbstractClasses.PowerUp;
 
 import java.util.List;
@@ -27,6 +28,11 @@ public class NukeITPowerUp extends PowerUp {
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
             if (obj instanceof Ship) {
+
+                for(Alien i : Enemy.aliens) {
+                    i.stopShooting();
+                }
+
                 world.deleteAllGameObjectsOfType(Asteroid.class);
                 world.deleteAllGameObjectsOfType(Alien.class);
                 world.deleteGameObject(this);
