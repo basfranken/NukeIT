@@ -63,9 +63,8 @@ public class NukeITWorld extends GameEngine {
             createObjects();
             createDashboards();
 
-            createSpawners(1000 - (50 * difficulty), 4000 - (100 * difficulty), 3000 - (100 * difficulty));
+            createSpawners(1000 - (125 * difficulty), 4000 - (100 * difficulty), 3000 - (100 * difficulty));
         }
-
     }
 
     /***
@@ -261,8 +260,8 @@ public class NukeITWorld extends GameEngine {
         if (gameState == GameState.START) {
             if(overRect(50, 50, 100, 100)){
 
-                if (difficulty <= -5){
-                    difficulty = -5;
+                if (difficulty <= 1){
+                    difficulty = 1;
                 }
                 else{
                     updateDifficulty(-1);

@@ -53,14 +53,9 @@ public class Alien extends Enemy {
                     world.getAlienShoot().cue(0);
                     world.getAlienShoot().play();
                 }
-
             }
         };
-
-
     }
-
-
 
     @Override
     public void update() {
