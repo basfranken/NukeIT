@@ -254,7 +254,7 @@ public class NukeITWorld extends GameEngine {
      * @param height    height of rectangle to check.
      * @return          true if mouse is over rectangle, false if not.
      */
-    boolean overRect(int x, int y, int width, int height)  {
+    public boolean overRect(int x, int y, int width, int height)  {
         return mouseX >= x && mouseX <= x + width &&
                 mouseY >= y && mouseY <= y + height;
     }
