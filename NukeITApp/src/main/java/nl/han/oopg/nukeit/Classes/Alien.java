@@ -16,17 +16,6 @@ public class Alien extends Enemy {
     private Timer timer;
     private TimerTask task;
 
-    /***
-     * Constructor
-     * @param world  The GameEngine
-     * @param startX starting X position of Alien.
-     * @param startY starting Y position of Alien.
-     * @param width
-     * @param height
-     * @param speed Alien's speed of travel
-     * @param lives Amount of lives.
-     * @param fireRate amount of milliseconds between fired shots.
-     */
     public Alien(NukeITWorld world, int startX, int startY, int width, int height, int speed, int lives, long fireRate) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/Alien.png"));
         this.world = world;
@@ -39,13 +28,15 @@ public class Alien extends Enemy {
         setySpeed(speed);
         setDirection(90);
         startShooting();
-        getAliens().add(this);
     }
 
-    /***
-     * sets the task wich will be executed by the timer.
-     */
-    public void setTask() {
+    private void startShooting() {
+        setTask();
+        timer = new Timer();
+        timer.schedule(task, 0, (long) fireRate);
+    }
+
+    private void setTask() {
         task = new TimerTask() {
 
             @Override
@@ -57,24 +48,7 @@ public class Alien extends Enemy {
         };
     }
 
-    /***
-     * Makes Alien start shooting via a timer.
-     */
-    private void startShooting() {
-        setTask();
-        timer = new Timer();
-        timer.schedule(task, 0, (long) fireRate);
-    }
 
-    void stopShooting() {
-        timer.cancel();
-    }
-
-    /***
-     * constantly checks if Alien has reached the end of the screen.
-     * If it has it's direction is reversed.
-     * also checks if lives have run out, if so it deletes Alien and stops the timer for shooting.
-     */
     @Override
     public void update() {
         if (getX() >= world.getWidth() - getWidth()) {
@@ -91,10 +65,7 @@ public class Alien extends Enemy {
         }
     }
 
-    /***
-     * If ALien collides with a shipBullet, subtracts a life and adds score to world.
-     * @param collidedWith
-     */
+
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {

@@ -17,6 +17,8 @@ public class NukeITWorld extends GameEngine {
 
     private Sound               shipShoot;
     private Sound               alienShoot;
+    private Sound               Music;
+    private Sound               astroidSpawn;
 
     public  MinusSign           minusSign;
     public  PlusSign            plusSign;
@@ -43,15 +45,14 @@ public class NukeITWorld extends GameEngine {
     public void setupGame() {
         int worldWith = 1280;
         int worldHeight = 900;
-
+        initializeSounds();
         createView(worldWith, worldHeight);
         if (gameState == GameState.START){
             selectionScreen();
         }
         if (gameState == GameState.GAME) {
 
-            //backGroundy();
-            initializeSounds();
+
             createObjects();
             createDashboards();
 
@@ -162,6 +163,9 @@ public class NukeITWorld extends GameEngine {
     private void initializeSounds() {
         shipShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser2.wav");
         alienShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser.wav");
+        Music = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/alien-spaceship.mp3");
+        astroidSpawn = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/tingle.mp3");
+
     }
 
     /***
@@ -245,7 +249,7 @@ public class NukeITWorld extends GameEngine {
 
         if (gameState == GameState.START) {
             if(overRect(50, 50, 100, 100)){
-                print(difficulty);
+
                 if (difficulty <= -5){
                     difficulty = -5;
                 }
@@ -255,7 +259,7 @@ public class NukeITWorld extends GameEngine {
                 }
             }
             if(overRect(getView().getWorldWidth()-200, 50, 100, 100)){
-                print(difficulty);
+
                 if (difficulty >= 5){
                     difficulty = 5;
                 }
@@ -290,6 +294,10 @@ public class NukeITWorld extends GameEngine {
         }
     }
 
+    /***
+     * Loads a text with your score so people can see their scores
+     * Loads a text so people have an indicator of what to do if they wanna play again
+     */
     public void scoreScreen(){
         endGameText = new TextObject("uw score is: " + score, 40);
         endGameText.setForeColor(255, 0, 0, 255);
@@ -300,7 +308,17 @@ public class NukeITWorld extends GameEngine {
         addGameObject(returnText, getView().getWorldWidth()/2-400, 500);
     }
 
+    /***
+     * loads in music
+     * uses plusSign class to generate a plus sign to increase difficulty
+     * uses minusSign class to generate a minus sign to decrease difficulty
+     * loads a text so people have an indicator where to click if they wanna start
+     * loads a text that displays the current difficulty
+     */
     public void selectionScreen() {
+        getMusic().cue(0);
+        getMusic().play();
+
         plusSign = new PlusSign(this);
         addGameObject(plusSign, 50, 50);
 
@@ -321,9 +339,14 @@ public class NukeITWorld extends GameEngine {
     public Sound getShipShoot() {
         return shipShoot;
     }
-
     public Sound getAlienShoot() {
         return alienShoot;
+    }
+    public Sound getMusic() {
+        return Music;
+    }
+    public Sound getAstroidSpawn() {
+        return astroidSpawn;
     }
 }
 

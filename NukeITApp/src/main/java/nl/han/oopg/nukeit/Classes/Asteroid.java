@@ -4,6 +4,7 @@ import nl.han.ica.oopg.objects.GameObject;
 import nl.han.ica.oopg.objects.Sprite;
 import nl.han.oopg.nukeit.AbstractClasses.Enemy;
 import java.util.List;
+import java.util.TimerTask;
 
 public class Asteroid extends Enemy {
 
@@ -25,7 +26,11 @@ public class Asteroid extends Enemy {
         setX(startX);
         setY(startY);
         setySpeed(speed);
+        //world.getAstroidSpawn().cue(0);
+        //world.getAstroidSpawn().play();
     }
+
+
 
     @Override
     public void update() {
