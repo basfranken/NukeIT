@@ -41,7 +41,8 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
                 world.addGameObject(new ShipBullet(world, (int) (getX() + getWidth() / 3), (int) (getY() - getHeight() / 2), -10, 315));
                 break;
         }
-
+        world.getShipShoot().cue(0);
+        world.getShipShoot().play();
     }
 
     public void changeWeapon (FireMode firemode) {
@@ -87,7 +88,6 @@ public class Ship extends SpriteObject implements ICollidableWithGameObjects {
             setDirectionSpeed(180, speed);
         }
         if (keyCode == ' ') {
-            world.soundBite();
             shoot();
         }
     }

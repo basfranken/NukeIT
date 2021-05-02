@@ -42,9 +42,12 @@ public class Alien extends Enemy {
             @Override
             public void run() {
                 world.addGameObject(new AlienBullet(world, (int) (getX() + getWidth() / 2), (int) getY(), 8));
+                world.getAlienShoot().cue(0);
+                world.getAlienShoot().play();
             }
         };
     }
+
 
     @Override
     public void update() {

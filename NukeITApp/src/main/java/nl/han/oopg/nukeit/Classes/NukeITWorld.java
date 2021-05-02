@@ -15,25 +15,24 @@ import java.util.Random;
 public class NukeITWorld extends GameEngine {
 
 
-    private Sound               jump;
+    private Sound               shipShoot;
+    private Sound               alienShoot;
+
     public  MinusSign           minusSign;
     public  PlusSign            plusSign;
-    public  Ship                ship;
+    public  Ship               ship;
     private TextObject          livesText;
     private TextObject          scoreText;
     private TextObject          difficultyText;
     private TextObject          startGameTexT;
-    private int                 score;
-    private int                 lives = 1;
-    private GameState           gameState = GameState.START;
-    private ArrayList<Spawner>  spawners;
-    private int                 difficulty = 1;
     private TextObject          endGameText;
     private TextObject          returnText;
-
-
-
-
+    private int                 score;
+    private int                 lives = 3;
+    private int                 difficulty = 1;
+    private int                 maxLives = 5;
+    private GameState           gameState = GameState.START;
+    private ArrayList<Spawner>  spawners;
 
     public static void main(String[] args) {
         NukeITWorld app = new NukeITWorld();
@@ -52,6 +51,7 @@ public class NukeITWorld extends GameEngine {
         if (gameState == GameState.GAME) {
 
             //backGroundy();
+            initializeSounds();
             createObjects();
             createDashboards();
 
@@ -75,6 +75,9 @@ public class NukeITWorld extends GameEngine {
 
     }
 
+    /***
+     * Creates and adds the dashboards for displaying the current score and lives.
+     */
     private void createDashboards() {
 
         int dashboardWidth  = 500;
@@ -97,7 +100,13 @@ public class NukeITWorld extends GameEngine {
 
     }
 
-
+    /***
+     * Creates spawners, and puts them in the arraylist spawners,
+     * then iterates over this arraylist and adds all of the spawners to the NukeITWorld.
+     * @param milliSecondsPerAsteroid How many milliseconds between every spawned asteroid.
+     * @param milliSecondsPerAlien    How many milliseconds between every spawned Alien.
+     * @param milliSecondsPerPowerUp  How many milliseconds between every spawned PowerUp.
+     */
     public void createSpawners(long milliSecondsPerAsteroid, long milliSecondsPerAlien, long milliSecondsPerPowerUp) {
         spawners = new ArrayList<>();
 
@@ -110,40 +119,82 @@ public class NukeITWorld extends GameEngine {
         }
     }
 
+    /***
+     * subtracts exactly 1 life from 'lives', unless lives is already 0 or lower.
+     * Then updates the text displaying lives.
+     */
     public void subtractLife() {
         if (lives >= 0) {
             lives--;
         } else {
             lives = 0;
         }
-        livesText.setText("LIVES: " + lives);
+        updateLivesText();
     }
 
+    /***
+     * Adds 1 life to 'lives' unless 'lives' is greater than 'maxLives'.
+     * Lives should not be negative, so if 'lives' is smaller than 0 it sets 'lives' to zero.
+     * If 'lives' is greater than 'maxLives' it sets 'lives' equal to 'maxLives'
+     */
     public void addLife() {
-        lives++;
+        if (lives <= maxLives) {
+            lives++;
+        }
+        if (lives < 0) {
+            lives = 0;
+        } else if (lives > maxLives){
+            lives = maxLives;
+        }
+        updateLivesText();
+    }
+
+    /***
+     * Updates the text displaying current lives.
+     */
+    private void updateLivesText(){
         livesText.setText("LIVES: " + lives);
     }
 
-
-    public void soundBite(){
-        jump = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/asteroidSpawnSound.mp3");
-        jump.cue(0);
-        jump.play();
+    /***
+     * Loads all sounds into variables.
+     */
+    private void initializeSounds() {
+        shipShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser2.wav");
+        alienShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser.wav");
     }
 
-
-
-
+    /***
+     * Adds given 'scoreToAdd' to current score.
+     * Then updates displayed score.
+     * if score is 0 or negative this method does nothing.
+     * @param scoreToAdd score to add to current score.
+     */
     public void updateScore(int scoreToAdd) {
+        if (scoreToAdd <= 0) {
+            return;
+        }
         score = score + scoreToAdd;
         scoreText.setText("SCORE : " + score);
     }
 
+    /***
+     * Returns a random value between 2 integers.
+     * @param min minimal value to be returned
+     * @param max maximal value to be returned
+     * @return random integer.
+     */
     public int getRandomInRange(int min, int max){
         Random random = new Random();
         return random.nextInt(max - min) + min;
     }
 
+    /***
+     * Deletes all gameObjects and Dashboards
+     * and stops all spawners from spawning,
+     * since deleting them doesn't stop them from spawning.
+     * sets 'gameState to 'END'.
+     */
     private void stopGame() {
         deleteAllGameOBjects();
         deleteAllDashboards();
@@ -208,7 +259,7 @@ public class NukeITWorld extends GameEngine {
                 deleteGameObject(difficultyText);
                 deleteGameObject(startGameTexT);
                 gameState = GameState.GAME;
-                lives = 1;
+                //lives = 1;
                 setupGame();
             }
         }
@@ -257,5 +308,12 @@ public class NukeITWorld extends GameEngine {
     }
 
 
+    public Sound getShipShoot() {
+        return shipShoot;
+    }
+
+    public Sound getAlienShoot() {
+        return alienShoot;
+    }
 }
 
