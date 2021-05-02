@@ -274,7 +274,6 @@ public class NukeITWorld extends GameEngine {
                 }
                 else{
                     updateDifficulty(1);
-
                 }
             }
             if(overRect(0, 300, getView().getWorldWidth(), getView().getWorldHeight())){
@@ -288,17 +287,13 @@ public class NukeITWorld extends GameEngine {
             }
         }
         if (gameState == GameState.END) {
-
             if(overRect(0, 0, getView().getWorldWidth(),  getView().getWorldHeight())){
-
                 deleteGameObject(endGameText);
                 deleteGameObject(returnText);
                 gameState = GameState.START;
                 lives = 1;
                 score = 0;
                 selectionScreen();
-
-
             }
         }
     }
@@ -308,11 +303,11 @@ public class NukeITWorld extends GameEngine {
      * Loads a text so people have an indicator of what to do if they want to play again
      */
     public void scoreScreen(){
-        endGameText = new TextObject("uw score is: " + score, 40);
+        endGameText = new TextObject("Your end score is: " + score, 40);
         endGameText.setForeColor(255, 0, 0, 255);
         addGameObject(endGameText, getView().getWorldWidth()/2-200, 50);
 
-        returnText = new TextObject("Click here to go back to startscreen" , 50);
+        returnText = new TextObject("Play Again" , 50);
         returnText.setForeColor(255, 0, 0, 255);
         addGameObject(returnText, getView().getWorldWidth()/2-400, 500);
     }
