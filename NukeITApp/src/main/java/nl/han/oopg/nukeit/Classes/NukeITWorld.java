@@ -20,7 +20,7 @@ public class NukeITWorld extends GameEngine {
 
     public  MinusSign           minusSign;
     public  PlusSign            plusSign;
-    public  Ship               ship;
+    public  Ship                ship;
     private TextObject          livesText;
     private TextObject          scoreText;
     private TextObject          difficultyText;
@@ -207,6 +207,9 @@ public class NukeITWorld extends GameEngine {
         scoreScreen();
     }
 
+    /***
+     * constantly checks if lives have run out. If they have it stops the game.
+     */
     @Override
     public void update() {
         if (lives <= 0) {
@@ -214,23 +217,24 @@ public class NukeITWorld extends GameEngine {
 
         }
     }
-    public void updateDifficulty(int diffiultyToAdd) {
-        difficulty = difficulty + diffiultyToAdd;
+
+    /***
+     * Updates difficulty and the text that displays it.
+     * @param difficultyToAdd difficulty to add to current difficulty.
+     */
+    public void updateDifficulty(int difficultyToAdd) {
+        difficulty = difficulty + difficultyToAdd;
         difficultyText.setText("Difficulty : " + difficulty);
     }
 
+
     boolean overRect(int x, int y, int width, int height)  {
-        if (mouseX >= x && mouseX <= x+width &&
-                mouseY >= y && mouseY <= y+height) {
-            return true;
-        } else {
-            return false;
-        }
+        return mouseX >= x && mouseX <= x + width &&
+                mouseY >= y && mouseY <= y + height;
     }
 
     @Override
     public void mousePressed() {
-
 
         if (gameState == GameState.START) {
             if(overRect(50, 50, 100, 100)){
@@ -265,7 +269,6 @@ public class NukeITWorld extends GameEngine {
         }
         if (gameState == GameState.END) {
 
-
             if(overRect(0, 0, getView().getWorldWidth(),  getView().getWorldHeight())){
 
                 deleteGameObject(endGameText);
@@ -289,6 +292,7 @@ public class NukeITWorld extends GameEngine {
         returnText.setForeColor(255, 0, 0, 255);
         addGameObject(returnText, getView().getWorldWidth()/2-400, 500);
     }
+
     public void selectionScreen() {
         plusSign = new PlusSign(this);
         addGameObject(plusSign, 50, 50);
@@ -306,7 +310,6 @@ public class NukeITWorld extends GameEngine {
         addGameObject(difficultyText, getView().getWorldWidth() / 2 -150, 75);
 
     }
-
 
     public Sound getShipShoot() {
         return shipShoot;
