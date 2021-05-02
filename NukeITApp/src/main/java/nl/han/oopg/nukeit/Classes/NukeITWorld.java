@@ -22,7 +22,7 @@ public class NukeITWorld extends GameEngine {
 
     private Sound               shipShoot;
     private Sound               alienShoot;
-    private Sound               Music;
+    private Sound               music;
     private Sound               astroidSpawn;
 
     public  MinusSign           minusSign;
@@ -35,7 +35,10 @@ public class NukeITWorld extends GameEngine {
     private TextObject          endGameText;
     private TextObject          returnText;
     private int                 score;
-    private int                 lives = 3;
+
+    private final int           startLives = 5;
+    private int                 lives = startLives;
+
     private int                 difficulty = 1;
     private GameState           gameState = GameState.START;
     private ArrayList<Spawner>  spawners;
@@ -168,7 +171,7 @@ public class NukeITWorld extends GameEngine {
     private void initializeSounds() {
         shipShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser2.wav");
         alienShoot = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laser.wav");
-        Music = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/alien-spaceship.mp3");
+        music = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/alien-spaceship.mp3");
         astroidSpawn = new Sound(this, "NukeITApp/src/main/java/nl/han/oopg/nukeit/data/tingle.mp3");
 
     }
@@ -223,7 +226,6 @@ public class NukeITWorld extends GameEngine {
     public void update() {
         if (lives <= 0) {
             stopGame();
-
         }
     }
 
@@ -279,7 +281,7 @@ public class NukeITWorld extends GameEngine {
                 deleteGameObject(difficultyText);
                 deleteGameObject(startGameTexT);
                 gameState = GameState.GAME;
-                //lives = 1;
+                lives = startLives;
                 setupGame();
             }
         }
@@ -348,7 +350,7 @@ public class NukeITWorld extends GameEngine {
         return alienShoot;
     }
     public Sound getMusic() {
-        return Music;
+        return music;
     }
     public Sound getAstroidSpawn() {
         return astroidSpawn;
