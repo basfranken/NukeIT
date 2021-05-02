@@ -5,7 +5,10 @@ import nl.han.ica.oopg.objects.Sprite;
 import nl.han.ica.oopg.objects.SpriteObject;
 import nl.han.oopg.nukeit.Classes.NukeITWorld;
 
-
+/*** This is the main class inherited by all Bullets.
+ * @author Bas Franken 616774, René Monté 665957
+ * @version 1.0
+ */
 public abstract class Bullet extends SpriteObject implements ICollidableWithGameObjects {
 
     private final NukeITWorld world;

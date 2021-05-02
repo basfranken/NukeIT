@@ -4,7 +4,10 @@ import nl.han.oopg.nukeit.AbstractClasses.Spawner;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+/*** This class represents the Spawner for asteroids
+ * @author Bas Franken 616774, René Monté 665957
+ * @version 1.0
+ */
 public class AsteroidSpawner extends Spawner {
 
     private final NukeITWorld world;

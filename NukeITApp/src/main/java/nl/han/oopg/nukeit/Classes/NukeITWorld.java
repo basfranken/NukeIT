@@ -12,6 +12,11 @@ import nl.han.ica.oopg.view.View;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*** This is the main class.
+ * @author Bas Franken 616774, René Monté 665957
+ * @version 1.0
+ */
+
 public class NukeITWorld extends GameEngine {
 
 

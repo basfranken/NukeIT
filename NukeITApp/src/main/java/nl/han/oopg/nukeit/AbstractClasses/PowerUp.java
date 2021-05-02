@@ -10,11 +10,16 @@ import nl.han.oopg.nukeit.Enums.FireMode;
 
 import java.util.List;
 
+/*** This is the main class inherited by all PowerUps.
+ * @author Bas Franken 616774, René Monté 665957
+ * @version 1.0
+ */
 public abstract class PowerUp extends SpriteObject implements ICollidableWithGameObjects {
 
     private final FireMode fireMode;
     private final NukeITWorld world;
     public static int size = 60;
+
 
     public PowerUp(Sprite sprite, FireMode fireMode, NukeITWorld world) {
         super(sprite);

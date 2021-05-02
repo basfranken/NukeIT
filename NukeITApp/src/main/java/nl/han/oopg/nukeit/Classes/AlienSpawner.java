@@ -7,6 +7,10 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/*** This class represents the Spawner for Aliens
+ * @author Bas Franken 616774, René Monté 665957
+ * @version 1.0
+ */
 public class AlienSpawner extends Spawner {
 
     private NukeITWorld world;
