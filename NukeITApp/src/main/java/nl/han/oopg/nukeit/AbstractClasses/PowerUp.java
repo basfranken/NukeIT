@@ -14,6 +14,7 @@ public abstract class PowerUp extends SpriteObject implements ICollidableWithGam
 
     private final FireMode fireMode;
     private final NukeITWorld world;
+    public static int size = 60;
 
     public PowerUp(Sprite sprite, FireMode fireMode, NukeITWorld world) {
         super(sprite);

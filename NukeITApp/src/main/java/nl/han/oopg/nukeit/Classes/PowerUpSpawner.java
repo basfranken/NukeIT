@@ -28,7 +28,7 @@ public class PowerUpSpawner extends Spawner {
             @Override
             public void run() {
 
-                int powerUpSize         = 60;
+                int powerUpSize         = nl.han.oopg.nukeit.AbstractClasses.PowerUp.size;
 
                 int powerUpminX         = powerUpSize;
                 int powerUpMaxX         = world.width - powerUpSize;
