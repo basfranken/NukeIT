@@ -11,12 +11,14 @@ import java.util.List;
 public class ShipBullet extends Bullet {
 
     private final NukeITWorld world;
-    final int width     = 40;
-    final int height    = 70;
+    private final int width;
+    private final int height;
 
     public ShipBullet(NukeITWorld world, int startX, int startY, int speed) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"), world);
         this.world = world;
+        width = 40;
+        height = 70;
         this.setWidth(width);
         this.setHeight(height);
         setX(startX);
@@ -27,6 +29,8 @@ public class ShipBullet extends Bullet {
     public ShipBullet(NukeITWorld world, int startX, int startY, int speed, int angle) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/laserBullet.png"), world);
         this.world = world;
+        width = 40;
+        height = 70;
         this.setWidth(width);
         this.setHeight(height);
         setX(startX);
@@ -38,7 +42,7 @@ public class ShipBullet extends Bullet {
     @Override
     public void gameObjectCollisionOccurred(List<GameObject> collidedWith) {
         for (GameObject obj : collidedWith) {
-            if (obj instanceof Enemy) {  //TODO if object implements enemy interface
+            if (obj instanceof Enemy) {
                 world.deleteGameObject(this);
             }
         }

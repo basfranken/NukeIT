@@ -1,0 +1,236 @@
+@startuml
+
+title __CLASSES's Class Diagram__\n
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.Alien {
+        - fireRate : float
+        - lives : int
+        - task : TimerTask
+        - timer : Timer
+        + Alien()
+        + gameObjectCollisionOccurred()
+        + stopShooting()
+        + update()
+        - setTask()
+        - startShooting()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.AlienBullet {
+        + AlienBullet()
+        + gameObjectCollisionOccurred()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.AlienSpawner {
+        - random : Random
+        - task : TimerTask
+        + AlienSpawner()
+        + draw()
+        + setTask()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.Asteroid {
+        + Asteroid()
+        + gameObjectCollisionOccurred()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.AsteroidSpawner {
+        - task : TimerTask
+        + AsteroidSpawner()
+        + setTask()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.LifePowerUp {
+        + LifePowerUp()
+        + gameObjectCollisionOccurred()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.MinusSign {
+        + MinusSign()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.NormalFirePowerUp {
+        + NormalFirePowerUp()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.NukeITPowerUp {
+        + NukeITPowerUp()
+        + gameObjectCollisionOccurred()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.NukeITWorld {
+        - alienShoot : Sound
+        - astroidSpawn : Sound
+        - difficulty : int
+        - difficultyText : TextObject
+        - endGameText : TextObject
+        - lives : int
+        - livesText : TextObject
+        - music : Sound
+        - returnText : TextObject
+        - score : int
+        - scoreText : TextObject
+        - shipShoot : Sound
+        - spawners : ArrayList<Spawner>
+        - startGameTexT : TextObject
+        - startLives : int
+        + addLife()
+        + createSpawners()
+        + getAlienShoot()
+        + getAstroidSpawn()
+        + getMusic()
+        + getRandomInRange()
+        + getShipShoot()
+        {static} + main()
+        + mousePressed()
+        + scoreScreen()
+        + selectionScreen()
+        + setupGame()
+        + subtractLife()
+        + update()
+        + updateDifficulty()
+        + updateScore()
+        ~ overRect()
+        - createDashboards()
+        - createObjects()
+        - createView()
+        - initializeSounds()
+        - stopGame()
+        - updateLivesText()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.PlusSign {
+        + PlusSign()
+        + update()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.PowerUpSpawner {
+        - random : Random
+        - task : TimerTask
+        + PowerUpSpawner()
+        + draw()
+        + setTask()
+        + update()
+        - pickRandomPowerUp()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.RapidFirePowerUp {
+        + RapidFirePowerUp()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.Ship {
+        + Ship()
+        + changeWeapon()
+        + gameObjectCollisionOccurred()
+        + keyPressed()
+        + update()
+        - shoot()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.ShipBullet {
+        - height : int
+        - width : int
+        + ShipBullet()
+        + ShipBullet()
+        + gameObjectCollisionOccurred()
+    }
+  }
+  
+
+  namespace nl.han.oopg.nukeit.Classes {
+    class nl.han.oopg.nukeit.Classes.TripleShotPowerUp {
+        + TripleShotPowerUp()
+    }
+  }
+  
+
+  nl.han.oopg.nukeit.Classes.Alien -up-|> nl.han.oopg.nukeit.AbstractClasses.Enemy
+  nl.han.oopg.nukeit.Classes.Alien o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.AlienBullet -up-|> nl.han.oopg.nukeit.AbstractClasses.Bullet
+  nl.han.oopg.nukeit.Classes.AlienBullet o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.AlienSpawner -up-|> nl.han.oopg.nukeit.AbstractClasses.Spawner
+  nl.han.oopg.nukeit.Classes.AlienSpawner o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.Asteroid -up-|> nl.han.oopg.nukeit.AbstractClasses.Enemy
+  nl.han.oopg.nukeit.Classes.Asteroid o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.AsteroidSpawner -up-|> nl.han.oopg.nukeit.AbstractClasses.Spawner
+  nl.han.oopg.nukeit.Classes.AsteroidSpawner o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.LifePowerUp .up.|> nl.han.ica.oopg.collision.ICollidableWithGameObjects
+  nl.han.oopg.nukeit.Classes.LifePowerUp -up-|> nl.han.ica.oopg.objects.SpriteObject
+  nl.han.oopg.nukeit.Classes.LifePowerUp o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.MinusSign -up-|> nl.han.ica.oopg.objects.SpriteObject
+  nl.han.oopg.nukeit.Classes.NormalFirePowerUp -up-|> nl.han.oopg.nukeit.AbstractClasses.PowerUp
+  nl.han.oopg.nukeit.Classes.NukeITPowerUp -up-|> nl.han.oopg.nukeit.AbstractClasses.PowerUp
+  nl.han.oopg.nukeit.Classes.NukeITPowerUp o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.NukeITWorld -up-|> nl.han.ica.oopg.engine.GameEngine
+  nl.han.oopg.nukeit.Classes.NukeITWorld o-- nl.han.oopg.nukeit.Enums.GameState : gameState
+  nl.han.oopg.nukeit.Classes.NukeITWorld o-- nl.han.oopg.nukeit.Classes.MinusSign : minusSign
+  nl.han.oopg.nukeit.Classes.NukeITWorld o-- nl.han.oopg.nukeit.Classes.PlusSign : plusSign
+  nl.han.oopg.nukeit.Classes.NukeITWorld o-- nl.han.oopg.nukeit.Classes.Ship : ship
+  nl.han.oopg.nukeit.Classes.PlusSign -up-|> nl.han.ica.oopg.objects.SpriteObject
+  nl.han.oopg.nukeit.Classes.PowerUpSpawner -up-|> nl.han.oopg.nukeit.AbstractClasses.Spawner
+  nl.han.oopg.nukeit.Classes.PowerUpSpawner o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.RapidFirePowerUp -up-|> nl.han.oopg.nukeit.AbstractClasses.PowerUp
+  nl.han.oopg.nukeit.Classes.Ship .up.|> nl.han.ica.oopg.collision.ICollidableWithGameObjects
+  nl.han.oopg.nukeit.Classes.Ship -up-|> nl.han.ica.oopg.objects.SpriteObject
+  nl.han.oopg.nukeit.Classes.Ship o-- nl.han.oopg.nukeit.Enums.FireMode : fireMode
+  nl.han.oopg.nukeit.Classes.Ship o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.ShipBullet -up-|> nl.han.oopg.nukeit.AbstractClasses.Bullet
+  nl.han.oopg.nukeit.Classes.ShipBullet o-- nl.han.oopg.nukeit.Classes.NukeITWorld : world
+  nl.han.oopg.nukeit.Classes.TripleShotPowerUp -up-|> nl.han.oopg.nukeit.AbstractClasses.PowerUp
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

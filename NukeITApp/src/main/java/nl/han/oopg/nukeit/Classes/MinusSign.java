@@ -13,21 +13,17 @@ import nl.han.oopg.nukeit.Enums.FireMode;
 import java.util.List;
 public class MinusSign extends SpriteObject{
 
-    final int width = 100;
-    final int height = 100;
-    private NukeITWorld world;
 
-    public MinusSign(NukeITWorld world){
+    public MinusSign(){
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/plusN.png"));
-        this.world = world;
-        this.setWidth(width);
-        this.setHeight(height);
+        setWidth(100);
+        setHeight(100);
     }
 
 
     @Override
     public void update() {
 
-    };
+    }
 
 }

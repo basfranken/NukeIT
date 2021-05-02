@@ -329,10 +329,10 @@ public class NukeITWorld extends GameEngine {
         getMusic().cue(0);
         getMusic().play();
 
-        plusSign = new PlusSign(this);
+        plusSign = new PlusSign();
         addGameObject(plusSign, 50, 50);
 
-        minusSign = new MinusSign(this);
+        minusSign = new MinusSign();
         addGameObject(minusSign, getView().getWorldWidth() - 200, 50);
 
         startGameTexT = new TextObject("Click here to start", 60);

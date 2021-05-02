@@ -10,18 +10,14 @@ import java.util.List;
 
 public class Ship extends SpriteObject implements ICollidableWithGameObjects {
 
-    final int width = 100;
-    final int height = 125;
     private final NukeITWorld world;
     FireMode fireMode = FireMode.NORMAL;
-
-
 
     public Ship(NukeITWorld world) {
         super(new Sprite("NukeITApp/src/main/java/nl/han/oopg/nukeit/data/ship purple.png"));
         this.world = world;
-        this.setWidth(width);
-        this.setHeight(height);
+        this.setWidth(100);
+        this.setHeight(125);
         setFriction(0.025f);
     }
 
